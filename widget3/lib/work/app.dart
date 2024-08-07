@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widget3/widgtes/JobCard.dart';
+import 'package:widget3/work/JobCard.dart';
 
 class NewApp extends StatelessWidget {
   List<Map<dynamic, dynamic>> _jobs = [
