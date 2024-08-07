@@ -91,7 +91,7 @@ class NewApp1 extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                flex: 1,
+                flex: 0,
                 child: Container(
                     margin: EdgeInsets.only(bottom: 20),
                     width: MediaQuery.of(context).size.width,
@@ -175,7 +175,7 @@ class NewApp1 extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 1,
+                flex: 0,
                 child: Container(
                   margin:
                       EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
@@ -192,7 +192,7 @@ class NewApp1 extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(left: 10),
                 width: MediaQuery.of(context).size.width,
-                height: 180,
+                height: 160,
                 // color: Colors.green,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -208,7 +208,7 @@ class NewApp1 extends StatelessWidget {
               ),
               // ===============================================================
               Expanded(
-                flex: 1,
+                flex: 0,
                 child: Container(
                   margin:
                       EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
