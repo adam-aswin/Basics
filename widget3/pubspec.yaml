@@ -63,9 +63,10 @@ flutter:
   assets:
     - images/tjr.png
     - images/z.webp
-    - images/lake.jpg
+    - images/hand1.jpg
     - images/in.webp
     - images/rk.webp
+    - images/sim.webp
     - images/tj.png
     - images/Tony Stark.jpg
     - images/Tony-Stark.webp
