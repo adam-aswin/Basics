@@ -53,12 +53,15 @@ class AppWork extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
+            
               icon: Icon(
                 Icons.menu,
                 color: Colors.black,
               ),
               label: "manage",
-              tooltip: "manage"),
+              
+              tooltip: "manage",
+              ),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.payment,
