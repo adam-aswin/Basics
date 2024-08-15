@@ -52,7 +52,7 @@ class AppWork extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.grey,
-        unselectedLabelStyle: TextStyle(color: Colors.black),
+        // unselectedLabelStyle: TextStyle(color: Colors.black),
         showUnselectedLabels: true,
         useLegacyColorScheme: false,
         items: [
@@ -406,8 +406,8 @@ class AppWork extends StatelessWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.all(10),
-                    height: 100,
-                    width: 130,
+                    height: 95,
+                    width: MediaQuery.of(context).size.width * .28,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.white,
@@ -436,8 +436,8 @@ class AppWork extends StatelessWidget {
                   Spacer(),
                   Container(
                     padding: EdgeInsets.all(10),
-                    height: 100,
-                    width: 130,
+                    height: 95,
+                    width: MediaQuery.of(context).size.width * .28,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.white,
@@ -466,8 +466,8 @@ class AppWork extends StatelessWidget {
                   Spacer(),
                   Container(
                     padding: EdgeInsets.all(10),
-                    height: 100,
-                    width: 130,
+                    height: 95,
+                    width: MediaQuery.of(context).size.width * .28,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.white,
@@ -494,7 +494,8 @@ class AppWork extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
+              ),
+              
             ],
           ),
         ),
