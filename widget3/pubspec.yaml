@@ -78,6 +78,7 @@ flutter:
     - lib/icons/search.png
     - lib/icons/youtube.png
     - lib/icons/ios.png
+    - lib/icons/phone.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
