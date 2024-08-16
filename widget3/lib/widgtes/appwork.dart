@@ -8,6 +8,7 @@ class AppWork extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ==================================================================
       appBar: AppBar(
         leading: Container(
           margin: EdgeInsets.only(left: 15),
@@ -50,6 +51,8 @@ class AppWork extends StatelessWidget {
         ],
         backgroundColor: Colors.grey[850],
       ),
+      // =========================================================================
+      // =========================================================================
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.grey,
         // unselectedLabelStyle: TextStyle(color: Colors.black),
@@ -88,6 +91,9 @@ class AppWork extends StatelessWidget {
               tooltip: "help"),
         ],
       ),
+      // ========================================================================
+      // ========================================================================
+      
       body: Container(
         color: Colors.grey[850],
         child: Container(
@@ -101,13 +107,21 @@ class AppWork extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
               color: const Color.fromARGB(255, 227, 231, 243)),
+      // ========================================================================
+      // ========================================================================
+      
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
+      // ========================================================================
+      // ========================================================================
+
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+      // ========================================================================
+
                     Container(
                       margin: EdgeInsets.only(top: 20),
                       padding: EdgeInsets.all(20),
@@ -166,7 +180,9 @@ class AppWork extends StatelessWidget {
                         ],
                       ),
                     ),
+      // ========================================================================
                     Spacer(),
+      // ========================================================================
                     Container(
                       width: MediaQuery.of(context).size.width * .43,
                       height: 250,
@@ -223,12 +239,18 @@ class AppWork extends StatelessWidget {
                         ],
                       ),
                     )
+      // ========================================================================
                   ],
                 ),
               ),
+      // ========================================================================
+      // ========================================================================
               SizedBox(
                 height: 20,
               ),
+      // ========================================================================
+      // ========================================================================
+
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 40,
@@ -254,9 +276,15 @@ class AppWork extends StatelessWidget {
                   ],
                 ),
               ),
+      // ========================================================================
+      // ========================================================================
+
               SizedBox(
                 height: 20,
               ),
+      // ========================================================================
+      // ========================================================================
+
               Container(
                 height: 190,
                 width: MediaQuery.of(context).size.width,
@@ -399,9 +427,14 @@ class AppWork extends StatelessWidget {
                   ],
                 ),
               ),
+      // ========================================================================
+      // ========================================================================
+
               SizedBox(
                 height: 20,
               ),
+      // ========================================================================
+      // ========================================================================
               Row(
                 children: [
                   Container(
@@ -494,28 +527,391 @@ class AppWork extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),SizedBox(height: 20,),
+              ),
+      // ========================================================================
+      // ========================================================================
+              SizedBox(height: 20,),
+      // ========================================================================
+      // ========================================================================
+
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 200,
+                height: 230,
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
                 ),
+                
                 child: Column(
                   children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 10,right: 10),
+                      child: Row(
+                        children: [
+                          // ==========================================================================
+                          Column(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 227, 231, 243),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 25,
+                                    height: 25,
+                                    child: Image.asset("./lib/icons/rupee.png"),
+                                  ),
+                                ),
+                              ),
+                              Text("recharge",style: TextStyle(fontSize: 12),),
+                              Text("",style: TextStyle(fontSize: 12),),
+                            ],
+                          ),Spacer(),
+                          // ==========================================================================
+                          Column(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 227, 231, 243),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 25,
+                                    height: 25,
+                                    child: Image.asset("./lib/icons/invoice.png"),
+                                  ),
+                                ),
+                              ),
+                              Text("pay bills",style: TextStyle(fontSize: 12),),
+                              Text("",style: TextStyle(fontSize: 12),),
+                            ],
+                          ),
+                          Spacer(),
+                          // ==========================================================================
+                          Column(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 227, 231, 243),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 25,
+                                    height: 25,
+                                    child: Image.asset("./lib/icons/guaranteed.png"),
+                                  ),
+                                ),
+                              ),
+                              Text("claim OTTs &",style: TextStyle(fontSize: 12),),
+                              Text("more",style: TextStyle(fontSize: 12),),
+                      
+                            ],
+                          ),Spacer(),
+                          // ==========================================================================
+                          Column(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 227, 231, 243),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 25,
+                                    height: 25,
+                                    child: Image.asset("./lib/icons/communication.png"),
+                                  ),
+                                ),
+                              ),
+                              Text("international",style: TextStyle(fontSize: 12),),
+                              Text("roaming",style: TextStyle(fontSize: 12),),
+                      
+                            ],
+                          ),
+                          // ===========================================================================
+                      
+                        ],
+                      ),
+                    ),
+                    // ==========================================================
+                    // ==========================================================
+                    SizedBox(height: 10,),
                     Row(
                       children: [
-                        Container(
-                          height: 65,
-                          width: 65,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                          color: const Color.fromARGB(255, 227, 231, 243),
-                          ),
-                          child: Icon(Icons.add_circle),
-                        )
+                        // ==========================================================================
+                        Column(
+                          children: [
+                            Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                              color: const Color.fromARGB(255, 227, 231, 243),
+                              ),
+                              child: Icon(Icons.add_circle),
+                            ),
+                            Text("add existing",style: TextStyle(fontSize: 12),),
+                            Text("connection",style: TextStyle(fontSize: 12),),
+
+                          ],
+                        ),Spacer(),
+                        // ==========================================================================
+                        Column(
+                          children: [
+                            Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                              color: const Color.fromARGB(255, 227, 231, 243),
+                              ),
+                              child: Center(
+                                child: Container(
+                                  width: 25,
+                                  height: 25,
+                                  child: Image.asset("./lib/icons/file-upload.png"),
+                                ),
+                              ),
+                            ),
+                            Text("upgrade to",style: TextStyle(fontSize: 12),),
+                            Text("postpaid",style: TextStyle(fontSize: 12),),
+
+                          ],
+                        ),
+                        Spacer(),
+                        // ==========================================================================
+                        Column(
+                          children: [
+                            Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                              color: const Color.fromARGB(255, 227, 231, 243),
+                              ),
+                              child: Center(
+                                child: Container(
+                                  width: 25,
+                                  height: 25,
+                                  child: Image.asset("./lib/icons/gigabyte.png"),
+                                ),
+                              ),
+                            ),
+                            Text("top up data",style: TextStyle(fontSize: 12),),
+                              Text("",style: TextStyle(fontSize: 12),),
+                          ],
+                        ),Spacer(),
+                        // ==========================================================================
+                        Column(
+                          children: [
+                            Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                              color: const Color.fromARGB(255, 227, 231, 243),
+                              ),
+                              child: Icon(Icons.sim_card_outlined),
+                            ),
+                            Text("upgrade to eSIM",style: TextStyle(fontSize: 12),),
+                              Text("",style: TextStyle(fontSize: 12),),
+
+                          ],
+                        ),
+                        // ===========================================================================
+
                       ],
-                    )
+                    ),
+                  ],
+                ),
+              ),
+      // ========================================================================
+              SizedBox(height: 20,),
+      // ========================================================================
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 230,
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+                ),
+                
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 10,right: 10),
+                      child: Row(
+                        children: [
+                          // ==========================================================================
+                          Column(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 227, 231, 243),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 25,
+                                    height: 25,
+                                    child: Image.asset("./lib/icons/rupee.png"),
+                                  ),
+                                ),
+                              ),
+                              Text("recharge",style: TextStyle(fontSize: 12),),
+                              Text("",style: TextStyle(fontSize: 12),),
+                            ],
+                          ),Spacer(),
+                          // ==========================================================================
+                          Column(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 227, 231, 243),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 25,
+                                    height: 25,
+                                    child: Image.asset("./lib/icons/invoice.png"),
+                                  ),
+                                ),
+                              ),
+                              Text("pay bills",style: TextStyle(fontSize: 12),),
+                              Text("",style: TextStyle(fontSize: 12),),
+                            ],
+                          ),
+                          Spacer(),
+                          // ==========================================================================
+                          Column(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 227, 231, 243),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 25,
+                                    height: 25,
+                                    child: Image.asset("./lib/icons/guaranteed.png"),
+                                  ),
+                                ),
+                              ),
+                              Text("claim OTTs &",style: TextStyle(fontSize: 12),),
+                              Text("more",style: TextStyle(fontSize: 12),),
+                      
+                            ],
+                          ),Spacer(),
+                          // ==========================================================================
+                          Column(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 227, 231, 243),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 25,
+                                    height: 25,
+                                    child: Image.asset("./lib/icons/communication.png"),
+                                  ),
+                                ),
+                              ),
+                              Text("international",style: TextStyle(fontSize: 12),),
+                              Text("roaming",style: TextStyle(fontSize: 12),),
+                      
+                            ],
+                          ),
+                          // ===========================================================================
+                      
+                        ],
+                      ),
+                    ),
+                    // ==========================================================
+                    // ==========================================================
+                    SizedBox(height: 10,),
+                    Container(
+                      margin: EdgeInsets.only(right: 90),
+                      // padding: EdgeInsets.only(right: 10),
+
+                      child: Row(
+                        children: [
+                          // ==========================================================================
+                          Column(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 227, 231, 243),
+                                ),
+                                child: Icon(Icons.add_circle),
+                              ),
+                              Text("add existing",style: TextStyle(fontSize: 12),),
+                              Text("connection",style: TextStyle(fontSize: 12),),
+                      
+                            ],
+                          ),Spacer(),
+                          // ==========================================================================
+                          Column(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 227, 231, 243),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 25,
+                                    height: 25,
+                                    child: Image.asset("./lib/icons/file-upload.png"),
+                                  ),
+                                ),
+                              ),
+                              Text("upgrade to",style: TextStyle(fontSize: 12),),
+                              Text("postpaid",style: TextStyle(fontSize: 12),),
+                      
+                            ],
+                          ),
+                          Spacer(),
+                          // ==========================================================================
+                          Column(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 227, 231, 243),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 25,
+                                    height: 25,
+                                    child: Image.asset("./lib/icons/gigabyte.png"),
+                                  ),
+                                ),
+                              ),
+                              Text("top up data",style: TextStyle(fontSize: 12),),
+                                Text("",style: TextStyle(fontSize: 12),),
+                            ],
+                          ),Spacer(),
+                          // ==========================================================================
+                          
+                          
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

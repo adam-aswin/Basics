@@ -73,7 +73,7 @@ flutter:
     - images/chip1.png
     - images/chair2.jpg
     - lib/icons/facebook.png
-    - lib/icons/google.png
+    # - lib/icons/google.png
     - lib/icons/instagram.png
     - lib/icons/search.png
     - lib/icons/youtube.png
@@ -81,6 +81,12 @@ flutter:
     - lib/icons/phone.png
     - lib/icons/gift.png
     - lib/icons/save.png
+    - lib/icons/communication.png
+    - lib/icons/invoice.png
+    - lib/icons/file-upload.png
+    - lib/icons/rupee.png
+    - lib/icons/guaranteed.png
+    - lib/icons/gigabyte.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
