@@ -448,7 +448,7 @@ class AppWork extends StatelessWidget {
                           height: 40,
                           width: 40,
                           child: Image.asset(
-                            "./lib/icons/phone.png",
+                            "./lib/icons/gift.png",
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -478,7 +478,7 @@ class AppWork extends StatelessWidget {
                           height: 40,
                           width: 40,
                           child: Image.asset(
-                            "./lib/icons/phone.png",
+                            "./lib/icons/save.png",
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -494,8 +494,32 @@ class AppWork extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),SizedBox(height: 20,),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 200,
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          height: 65,
+                          width: 65,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
+                          color: const Color.fromARGB(255, 227, 231, 243),
+                          ),
+                          child: Icon(Icons.add_circle),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
-              
+              SizedBox(height: 20,),
             ],
           ),
         ),
