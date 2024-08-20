@@ -37,9 +37,9 @@ class _timerprojectState extends State<timerproject> {
     int seconds = (hundreds / 100).truncate();
     int minutes = (seconds / 60).truncate();
 
-    String minuteStr = (minutes.toString().padLeft(2, "0"));
-    String secondStr = (seconds.toString().padLeft(2, "0"));
-    String hundredStr = (hundreds.toString().padLeft(2, "0"));
+    String minuteStr = ((minutes % 60).toString().padLeft(2, "0"));
+    String secondStr = ((seconds % 60).toString().padLeft(2, "0"));
+    String hundredStr = ((hundreds % 100).toString().padLeft(2, "0"));
     return "$minuteStr : $secondStr : $hundredStr";
   }
 
@@ -60,9 +60,16 @@ class _timerprojectState extends State<timerproject> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey[900],
         appBar: AppBar(
-          title: Text("Stop-Watch"),
+          title: Text(
+            "Stop-Watch",
+            style: TextStyle(
+              color: Color.fromARGB(230, 255, 255, 255),
+              fontSize: 25,
+            ),
+          ),
+          backgroundColor: Colors.grey[900],
           centerTitle: true,
         ),
         body: Container(
@@ -74,10 +81,33 @@ class _timerprojectState extends State<timerproject> {
               SizedBox(
                 height: 40,
               ),
-              GestureDetector(
-                child: Text(
-                  _formatTimer(_elapstime),
-                  style: TextStyle(color: Colors.white, fontSize: 30),
+              Container(
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(
+                    color: Colors.grey[900],
+                    borderRadius: BorderRadius.circular(100),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color.fromARGB(10, 158, 158, 158),
+                        spreadRadius: 2,
+                        blurRadius: 2,
+                        offset: Offset(-2, -2),
+                      ),
+                      BoxShadow(
+                        color: const Color.fromARGB(43, 0, 0, 0),
+                        spreadRadius: 2,
+                        blurRadius: 2,
+                        offset: Offset(2, 2),
+                      )
+                    ]),
+                child: Center(
+                  child: Text(
+                    _formatTimer(_elapstime),
+                    style: TextStyle(
+                        color: const Color.fromARGB(230, 255, 255, 255),
+                        fontSize: 30),
+                  ),
                 ),
               ),
               SizedBox(
@@ -90,13 +120,35 @@ class _timerprojectState extends State<timerproject> {
                     onTap: _resetLap,
                     child: Container(
                       width: 70,
-                      height: 70,
+                      height: 45,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: _isRunning ? Colors.yellow : Colors.blue,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color.fromARGB(10, 158, 158, 158),
+                            spreadRadius: 1,
+                            blurRadius: 1,
+                            offset: Offset(-2, -2),
+                          ),
+                          BoxShadow(
+                            color: const Color.fromARGB(43, 0, 0, 0),
+                            spreadRadius: 1,
+                            blurRadius: 1,
+                            offset: Offset(2, 2),
+                          )
+                        ],
+                        color: Colors.grey[900],
                       ),
                       child: Center(
-                        child: _isRunning ? Text("Lap") : Text("Reset"),
+                        child: _isRunning
+                            ? Text(
+                                "Lap",
+                                style: TextStyle(color: Colors.deepPurple),
+                              )
+                            : Text(
+                                "Reset",
+                                style: TextStyle(color: Colors.blue),
+                              ),
                       ),
                     ),
                   ),
@@ -104,13 +156,35 @@ class _timerprojectState extends State<timerproject> {
                     onTap: _startStoptimer,
                     child: Container(
                       width: 70,
-                      height: 70,
+                      height: 45,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: _isRunning ? Colors.red : Colors.green,
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey[900],
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color.fromARGB(10, 158, 158, 158),
+                            spreadRadius: 1,
+                            blurRadius: 1,
+                            offset: Offset(-2, -2),
+                          ),
+                          BoxShadow(
+                            color: const Color.fromARGB(43, 0, 0, 0),
+                            spreadRadius: 1,
+                            blurRadius: 1,
+                            offset: Offset(2, 2),
+                          )
+                        ],
                       ),
                       child: Center(
-                        child: _isRunning ? Text("Stop") : Text("Start"),
+                        child: _isRunning
+                            ? Text(
+                                "Stop",
+                                style: TextStyle(color: Colors.red),
+                              )
+                            : Text(
+                                "Start",
+                                style: TextStyle(color: Colors.green),
+                              ),
                       ),
                     ),
                   ),
@@ -119,7 +193,9 @@ class _timerprojectState extends State<timerproject> {
               SizedBox(
                 height: 20,
               ),
-              Divider(),
+              Divider(
+                color: Colors.grey[800],
+              ),
               Expanded(
                   child: ListView.builder(
                 itemCount: laps.length,
@@ -128,12 +204,24 @@ class _timerprojectState extends State<timerproject> {
                     margin: EdgeInsets.all(10),
                     width: MediaQuery.of(context).size.width,
                     alignment: Alignment.center,
-                    child: Text(
-                      laps[index],
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          (index + 1).toString(),
+                          style: TextStyle(
+                            color: const Color.fromARGB(230, 255, 255, 255),
+                            fontSize: 20,
+                          ),
+                        ),
+                        Text(
+                          laps[index],
+                          style: TextStyle(
+                            color: const Color.fromARGB(230, 255, 255, 255),
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
                     ),
                   );
                 },
