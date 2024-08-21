@@ -63,6 +63,9 @@ flutter:
     - images/computer.jpg
     - images/client.jpg
     - images/privacy.jpg
+    - lib/icons/facebook.png
+    - lib/icons/search.png
+    - lib/icons/instagram.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
