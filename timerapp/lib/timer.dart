@@ -14,22 +14,71 @@ class _timerprojectState extends State<timerproject> {
   int _elapstime = 0;
   bool _isRunning = false;
   List<String> laps = [];
+  List <BoxShadow>box=[
+                          BoxShadow(
+                            color: const Color.fromARGB(10, 158, 158, 158),
+                            spreadRadius: 1,
+                            blurRadius: 1,
+                            offset: Offset(-2, -2),
+                          ),
+                          BoxShadow(
+                            color: const Color.fromARGB(43, 0, 0, 0),
+                            spreadRadius: 1,
+                            blurRadius: 1,
+                            offset: Offset(2, 2),
+                          )
+                        ];
+  
 
   void _startStoptimer() {
     if (_isRunning) {
       _timer?.cancel();
     } else {
-      _timer = Timer.periodic(Duration(microseconds: 10), (timer) {
+      _timer = Timer.periodic(Duration(milliseconds: 10), (timer) {
         setState(() {
           _elapstime += 100;
         });
-        print(_elapstime);
+        // print(_elapstime);
       });
     }
-
+setState(() {
+      if(_isRunning){
+        box=[
+                          BoxShadow(
+                            color: const Color.fromARGB(10, 158, 158, 158),
+                            spreadRadius: 1,
+                            blurRadius: 1,
+                            offset: Offset(-2, -2),
+                          ),
+                          BoxShadow(
+                            color: const Color.fromARGB(43, 0, 0, 0),
+                            spreadRadius: 1,
+                            blurRadius: 1,
+                            offset: Offset(2, 2),
+                          )
+                        ];
+      }else{
+        box=[
+                          BoxShadow(
+                            color: const Color.fromARGB(10, 158, 158, 158),
+                            spreadRadius: 1,
+                            blurRadius: 1,
+                            offset: Offset(2, 2),
+                          ),
+                          BoxShadow(
+                            color: const Color.fromARGB(43, 0, 0, 0),
+                            spreadRadius: 1,
+                            blurRadius: 1,
+                            offset: Offset(-2, -2),
+                          )
+                        ];
+      }
+    });
     setState(() {
       _isRunning = !_isRunning;
     });
+
+    
   }
 
   String _formatTimer(int milliSecond) {
@@ -101,24 +150,84 @@ class _timerprojectState extends State<timerproject> {
                         offset: Offset(2, 2),
                       )
                     ]),
-                child: Center(
-                  child: Text(
-                    _formatTimer(_elapstime),
-                    style: TextStyle(
-                        color: const Color.fromARGB(230, 255, 255, 255),
-                        fontSize: 30),
-                  ),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        width: 150,
+                        height: 150,
+                       decoration: BoxDecoration(
+                    color: Colors.grey[900],
+                    borderRadius: BorderRadius.circular(100),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color.fromARGB(10, 158, 158, 158),
+                        spreadRadius: 2,
+                        blurRadius: 2,
+                        offset: Offset(2, 2),
+                      ),
+                      BoxShadow(
+                        color: const Color.fromARGB(43, 0, 0, 0),
+                        spreadRadius: 2,
+                        blurRadius: 2,
+                        offset: Offset(-2, -2),
+                      )
+                    ]),
+                        child: Center(
+                        child: Text(
+                          _formatTimer(_elapstime),
+                          style: TextStyle(
+                              color: const Color.fromARGB(230, 255, 255, 255),
+                              fontSize: 20),
+                        ),
+                                          ),
+                      ),
+                    ),],
                 ),
               ),
               SizedBox(
                 height: 50,
               ),
-              Row(
+             
+              
+              Expanded(
+                  child: ListView.builder(
+                itemCount: laps.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.all(10),
+                    width: MediaQuery.of(context).size.width,
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          (index + 1).toString(),
+                          style: TextStyle(
+                            color: const Color.fromARGB(230, 255, 255, 255),
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          laps[index],
+                          style: TextStyle(
+                            color: const Color.fromARGB(230, 255, 255, 255),
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),),
+               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
                     onTap: _resetLap,
                     child: Container(
+                      margin: EdgeInsets.all(5),
                       width: 70,
                       height: 45,
                       decoration: BoxDecoration(
@@ -155,25 +264,13 @@ class _timerprojectState extends State<timerproject> {
                   GestureDetector(
                     onTap: _startStoptimer,
                     child: Container(
+                      margin: EdgeInsets.all(5),
                       width: 70,
                       height: 45,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey[900],
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color.fromARGB(10, 158, 158, 158),
-                            spreadRadius: 1,
-                            blurRadius: 1,
-                            offset: Offset(-2, -2),
-                          ),
-                          BoxShadow(
-                            color: const Color.fromARGB(43, 0, 0, 0),
-                            spreadRadius: 1,
-                            blurRadius: 1,
-                            offset: Offset(2, 2),
-                          )
-                        ],
+                        boxShadow: box,
                       ),
                       child: Center(
                         child: _isRunning
@@ -191,41 +288,8 @@ class _timerprojectState extends State<timerproject> {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
-              Divider(
-                color: Colors.grey[800],
-              ),
-              Expanded(
-                  child: ListView.builder(
-                itemCount: laps.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.all(10),
-                    width: MediaQuery.of(context).size.width,
-                    alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          (index + 1).toString(),
-                          style: TextStyle(
-                            color: const Color.fromARGB(230, 255, 255, 255),
-                            fontSize: 20,
-                          ),
-                        ),
-                        Text(
-                          laps[index],
-                          style: TextStyle(
-                            color: const Color.fromARGB(230, 255, 255, 255),
-                            fontSize: 20,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ))
             ],
           ),
         ),
