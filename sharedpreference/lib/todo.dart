@@ -24,9 +24,9 @@ class _TodoState extends State<Todo> {
 
   void getTodos() async {
     final prefs = await SharedPreferences.getInstance();
-    final res = prefs.getString("Todos");
+    final String res = prefs.getString("Todos")!;
     setState(() {
-      tasks = jsonDecode(res!);
+      tasks = jsonDecode(res);
       print(tasks);
     });
     print(tasks.length);
@@ -209,47 +209,38 @@ class _TodoState extends State<Todo> {
             SizedBox(
               height: 20,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * .7,
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                // color: Colors.green[200],
-              ),
-              child: Expanded(
-                child: ListView.builder(
-                  itemCount: tasks.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      onLongPress: () {
-                        // print(tasks[index]);
+            Expanded(
+              child: ListView.builder(
+                itemCount: tasks.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    onLongPress: () {
+                      // print(tasks[index]);
+                      setState(() {
+                        _controller.text = tasks[index];
+                        longPress = true;
+                        editIndex = index;
+                      });
+                    },
+                    title: Text(
+                      (tasks[index].toString()).toString(),
+                      style: TextStyle(
+                          // color: const Color.fromARGB(255, 248, 255, 248),
+                          ),
+                    ),
+                    trailing: IconButton(
+                      onPressed: () {
                         setState(() {
-                          _controller.text = tasks[index];
-                          longPress = true;
-                          editIndex = index;
+                          delete(index);
                         });
                       },
-                      title: Text(
-                        (tasks[index].toString()).toString(),
-                        style: TextStyle(
-                            // color: const Color.fromARGB(255, 248, 255, 248),
-                            ),
+                      icon: Icon(
+                        Icons.delete,
+                        color: Colors.red,
                       ),
-                      trailing: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            delete(index);
-                          });
-                        },
-                        icon: Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             )
           ],
