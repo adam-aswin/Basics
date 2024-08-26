@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Inputpage extends StatefulWidget {
   const Inputpage({super.key});
@@ -10,19 +11,72 @@ class Inputpage extends StatefulWidget {
 }
 
 class _InputpageState extends State<Inputpage> {
-  TextEditingController _c1=TextEditingController();
-    TextEditingController _c2=TextEditingController();
-    TextEditingController _c3=TextEditingController();
-    TextEditingController _c4=TextEditingController();
-    TextEditingController _c5=TextEditingController();
-    TextEditingController _c6=TextEditingController();
-    TextEditingController _c7=TextEditingController();
-    TextEditingController _c8=TextEditingController();
-    final Map data={};
-    List tasks=[];
+  TextEditingController _c1 = TextEditingController();
+  TextEditingController _c2 = TextEditingController();
+  TextEditingController _c3 = TextEditingController();
+  TextEditingController _c4 = TextEditingController();
+  TextEditingController _c5 = TextEditingController();
+  TextEditingController _c6 = TextEditingController();
+  TextEditingController _c7 = TextEditingController();
+  TextEditingController _c8 = TextEditingController();
+  final Map data = {};
+  List<Map<dynamic, dynamic>> tasks = [];
+
+  // void get() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final res = prefs.getString("Stud");
+  //   tasks = jsonDecode(res!);
+  //   setState(() {
+  //     data["name"] = _c1.text;
+  //     data["age"] = _c2.text;
+  //     data["date"] = _c3.text;
+  //     data["email"] = _c4.text;
+  //     data["no"] = _c5.text;
+  //     data["gender"] = _c6.text;
+  //     data["add"] = _c7.text;
+  //     data["course"] = _c8.text;
+  //     tasks.add(data);
+
+  //     print(tasks);
+  //   });
+  //   prefs.setString("Stud", jsonEncode(tasks));
+  // }
+
+  void add() async {
+    final prefs = await SharedPreferences.getInstance();
+    final res = prefs.getString("Stud");
+    if (res != null) {
+      List<Map> task = jsonDecode(res);
+      task.add({
+        "name": _c1.text,
+        "age": _c2.text,
+        "date": _c3.text,
+        "email": _c4.text,
+        "no": _c5.text,
+        "gender": _c6.text,
+        "add": _c7.text,
+        "course": _c8.text
+      });
+      prefs.setString("Stud", jsonEncode(task));
+    } else {
+      List<Map> task = [
+        {
+          "name": _c1.text,
+          "age": _c2.text,
+          "date": _c3.text,
+          "email": _c4.text,
+          "no": _c5.text,
+          "gender": _c6.text,
+          "add": _c7.text,
+          "course": _c8.text
+        }
+      ];
+      prefs.setString("Stud", jsonEncode(task));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 241, 251, 252),
@@ -49,7 +103,9 @@ class _InputpageState extends State<Inputpage> {
                 child: ListView(
                   scrollDirection: Axis.vertical,
                   children: [
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Expanded(
                       child: TextField(
                         controller: _c1,
@@ -73,7 +129,10 @@ class _InputpageState extends State<Inputpage> {
                           ),
                         ),
                       ),
-                    ),SizedBox(height: 10,),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Expanded(
                       child: TextField(
                         controller: _c2,
@@ -97,7 +156,10 @@ class _InputpageState extends State<Inputpage> {
                           ),
                         ),
                       ),
-                    ),SizedBox(height: 10,),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Expanded(
                       child: TextField(
                         controller: _c3,
@@ -121,7 +183,10 @@ class _InputpageState extends State<Inputpage> {
                           ),
                         ),
                       ),
-                    ),SizedBox(height: 10,),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Expanded(
                       child: TextField(
                         controller: _c4,
@@ -145,7 +210,10 @@ class _InputpageState extends State<Inputpage> {
                           ),
                         ),
                       ),
-                    ),SizedBox(height: 10,),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Expanded(
                       child: TextField(
                         controller: _c5,
@@ -169,7 +237,10 @@ class _InputpageState extends State<Inputpage> {
                           ),
                         ),
                       ),
-                    ),SizedBox(height: 10,),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Expanded(
                       child: TextField(
                         controller: _c6,
@@ -193,7 +264,10 @@ class _InputpageState extends State<Inputpage> {
                           ),
                         ),
                       ),
-                    ),SizedBox(height: 10,),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Expanded(
                       child: TextField(
                         controller: _c7,
@@ -217,7 +291,10 @@ class _InputpageState extends State<Inputpage> {
                           ),
                         ),
                       ),
-                    ),SizedBox(height: 10,),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Expanded(
                       child: TextField(
                         controller: _c8,
@@ -241,7 +318,10 @@ class _InputpageState extends State<Inputpage> {
                           ),
                         ),
                       ),
-                    ),SizedBox(height: 10,),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                   ],
                 ),
               ),
@@ -253,30 +333,32 @@ class _InputpageState extends State<Inputpage> {
                   Container(
                     child: Image.asset("./images/book.jpg"),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 1, 198, 224),
                       shadowColor: const Color.fromARGB(255, 92, 231, 250),
                     ),
-                    onPressed: (){
-                      setState(() {
-                        data["name"]=_c1.text;
-                        data["age"]=_c2.text;
-                        data["date"]=_c3.text;
-                        data["email"]=_c4.text;
-                        data["no"]=_c5.text;
-                        data["gender"]=_c6.text;
-                        data["add"]=_c7.text;
-                        data["course"]=_c8.text;
-                      });
+                    onPressed: () {
+                      add();
+
+                      // print(tasks);
                       print(data);
-                      Navigator.pushNamed(context, "/home",arguments: jsonEncode(data),);
+                      Navigator.pushNamed(
+                        context,
+                        "/home",
+                        arguments: jsonEncode(data),
+                      );
                     },
-                    child: Text("Submit",style: TextStyle(
-                      color: const Color.fromARGB(255, 241, 251, 252),
-                    ),),
-                    )
+                    child: Text(
+                      "Submit",
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 241, 251, 252),
+                      ),
+                    ),
+                  )
                 ],
               ),
             )
