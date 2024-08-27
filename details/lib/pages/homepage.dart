@@ -32,6 +32,11 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 241, 251, 252),
+        title: Text("STUDENTS"),
+        centerTitle: true,
+      ),
       floatingActionButton: ElevatedButton(
         style: ElevatedButton.styleFrom(
             backgroundColor: const Color.fromARGB(255, 1, 198, 224),
@@ -53,7 +58,20 @@ class _HomepageState extends State<Homepage> {
             itemCount: tasks.length,
             itemBuilder: (context, index) {
               return Center(
-                child: Text(tasks[index]["name"]),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      "/output",
+                      arguments: jsonEncode(
+                        tasks[index],
+                      ),
+                    );
+                  },
+                  child: Text(
+                    tasks[index]["name"],
+                  ),
+                ),
               );
             },
           ),

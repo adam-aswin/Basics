@@ -19,6 +19,9 @@ class _InputpageState extends State<Inputpage> {
   TextEditingController _c6 = TextEditingController();
   TextEditingController _c7 = TextEditingController();
   TextEditingController _c8 = TextEditingController();
+  TextEditingController _c9 = TextEditingController();
+  TextEditingController _c10 = TextEditingController();
+  TextEditingController _c11 = TextEditingController();
   Map data = {};
   List<dynamic> details = [];
 
@@ -321,6 +324,95 @@ class _InputpageState extends State<Inputpage> {
                     SizedBox(
                       height: 10,
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: _c9,
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color:
+                                      const Color.fromARGB(255, 92, 231, 250),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    width: 2,
+                                    color:
+                                        const Color.fromARGB(255, 1, 198, 224),
+                                  )),
+                              enabled: true,
+                              labelText: "Mark",
+                              labelStyle: TextStyle(
+                                color: const Color.fromARGB(255, 1, 198, 224),
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: TextField(
+                            controller: _c10,
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color:
+                                      const Color.fromARGB(255, 92, 231, 250),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    width: 2,
+                                    color:
+                                        const Color.fromARGB(255, 1, 198, 224),
+                                  )),
+                              enabled: true,
+                              labelText: "Mark",
+                              labelStyle: TextStyle(
+                                color: const Color.fromARGB(255, 1, 198, 224),
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: TextField(
+                            controller: _c11,
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color:
+                                      const Color.fromARGB(255, 92, 231, 250),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    width: 2,
+                                    color:
+                                        const Color.fromARGB(255, 1, 198, 224),
+                                  )),
+                              enabled: true,
+                              labelText: "Mark",
+                              labelStyle: TextStyle(
+                                color: const Color.fromARGB(255, 1, 198, 224),
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -345,7 +437,6 @@ class _InputpageState extends State<Inputpage> {
                       Navigator.pushNamed(
                         context,
                         "/home",
-                        arguments: jsonEncode(data),
                       );
                     },
                     child: Text(
