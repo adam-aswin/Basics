@@ -10,10 +10,33 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  List<Map<dynamic,dynamic>> tasks = [];
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   // display();
+  // }
+    void display()async{
+    final prefs = await SharedPreferences.getInstance();
+    final res = prefs.getString("Stud");
+    tasks=jsonDecode(res!);
+    setState(() {
+      
+      Expanded(
+          child: ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return Text(tasks[0]["name"]);
+            },),);
+    });
+    print(tasks);
+    }
   @override
   Widget build(BuildContext context) {
-    // List<dynamic> tasks = [];
     
+
+
     
     return Scaffold(
       floatingActionButton: ElevatedButton(
@@ -33,17 +56,11 @@ class _HomepageState extends State<Homepage> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: Center(
-                child: Text("Empty"),
-                ),
-        // Expanded(
-        //   child: ListView.builder(
-        //     itemCount: 1,
-        //     itemBuilder: (context, index) {
-        //       return ;
-        //     },
-        //     )
-        //   ),
+        child: GestureDetector(
+          onTap: display,
+          child: Icon(Icons.man),
+
+        ),
       ),
     );
   }

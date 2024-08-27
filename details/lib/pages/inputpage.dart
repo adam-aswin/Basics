@@ -45,21 +45,19 @@ class _InputpageState extends State<Inputpage> {
   void add() async {
     final prefs = await SharedPreferences.getInstance();
     final res = prefs.getString("Stud");
-    if (res != null) {
-      List<Map> task = jsonDecode(res);
-      task.add({
-        "name": _c1.text,
-        "age": _c2.text,
-        "date": _c3.text,
-        "email": _c4.text,
-        "no": _c5.text,
-        "gender": _c6.text,
-        "add": _c7.text,
-        "course": _c8.text
-      });
-      prefs.setString("Stud", jsonEncode(task));
-    } else {
-      List<Map> task = [
+    try{
+      Map task = jsonDecode(res!);
+      task["name"]=_c1.text;
+      task["age"]=_c2.text;
+      task["date"]=_c3.text;
+      task["email"]=_c4.text;
+      task["no"]=_c5.text;
+      task["gender"]=_c6.text;
+      task["add"]=_c6.text;
+      task["course"]=_c8.text;
+      tasks.add(task);
+    }catch(error){
+      Map task = 
         {
           "name": _c1.text,
           "age": _c2.text,
@@ -69,10 +67,10 @@ class _InputpageState extends State<Inputpage> {
           "gender": _c6.text,
           "add": _c7.text,
           "course": _c8.text
-        }
-      ];
-      prefs.setString("Stud", jsonEncode(task));
+        };
+        tasks.add(task);
     }
+    print(tasks);
   }
 
   @override
