@@ -19,8 +19,8 @@ class _InputpageState extends State<Inputpage> {
   TextEditingController _c6 = TextEditingController();
   TextEditingController _c7 = TextEditingController();
   TextEditingController _c8 = TextEditingController();
-  final Map data = {};
-  List<Map<dynamic, dynamic>> tasks = [];
+  Map data = {};
+  List<dynamic> details = [];
 
   // void get() async {
   //   final prefs = await SharedPreferences.getInstance();
@@ -45,32 +45,33 @@ class _InputpageState extends State<Inputpage> {
   void add() async {
     final prefs = await SharedPreferences.getInstance();
     final res = prefs.getString("Stud");
-    try{
-      Map task = jsonDecode(res!);
-      task["name"]=_c1.text;
-      task["age"]=_c2.text;
-      task["date"]=_c3.text;
-      task["email"]=_c4.text;
-      task["no"]=_c5.text;
-      task["gender"]=_c6.text;
-      task["add"]=_c6.text;
-      task["course"]=_c8.text;
-      tasks.add(task);
-    }catch(error){
-      Map task = 
-        {
-          "name": _c1.text,
-          "age": _c2.text,
-          "date": _c3.text,
-          "email": _c4.text,
-          "no": _c5.text,
-          "gender": _c6.text,
-          "add": _c7.text,
-          "course": _c8.text
-        };
-        tasks.add(task);
+    try {
+      details = jsonDecode(res!);
+      data["name"] = _c1.text;
+      data["age"] = _c2.text;
+      data["date"] = _c3.text;
+      data["email"] = _c4.text;
+      data["no"] = _c5.text;
+      data["gender"] = _c6.text;
+      data["add"] = _c6.text;
+      data["course"] = _c8.text;
+      details.add(data);
+      prefs.setString("Stud", jsonEncode(details));
+    } catch (error) {
+      data = {
+        "name": _c1.text,
+        "age": _c2.text,
+        "date": _c3.text,
+        "email": _c4.text,
+        "no": _c5.text,
+        "gender": _c6.text,
+        "add": _c7.text,
+        "course": _c8.text
+      };
+      details.add(data);
+      prefs.setString("Stud", jsonEncode(details));
     }
-    print(tasks);
+    // print(details);
   }
 
   @override
@@ -341,9 +342,6 @@ class _InputpageState extends State<Inputpage> {
                     ),
                     onPressed: () {
                       add();
-
-                      // print(tasks);
-                      print(data);
                       Navigator.pushNamed(
                         context,
                         "/home",
