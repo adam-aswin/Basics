@@ -1,16 +1,15 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Inputpage extends StatefulWidget {
-  const Inputpage({super.key});
+class Editpage extends StatefulWidget {
+  const Editpage({super.key});
 
   @override
-  State<Inputpage> createState() => _InputpageState();
+  State<Editpage> createState() => _EditpageState();
 }
 
-class _InputpageState extends State<Inputpage> {
+class _EditpageState extends State<Editpage> {
   TextEditingController _c1 = TextEditingController();
   TextEditingController _c2 = TextEditingController();
   TextEditingController _c3 = TextEditingController();
@@ -22,8 +21,13 @@ class _InputpageState extends State<Inputpage> {
   TextEditingController _c9 = TextEditingController();
   TextEditingController _c10 = TextEditingController();
   TextEditingController _c11 = TextEditingController();
-  Map data = {};
   List<dynamic> details = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    get();
+  }
 
   void get() async {
     final prefs = await SharedPreferences.getInstance();
@@ -33,57 +37,20 @@ class _InputpageState extends State<Inputpage> {
     });
   }
 
-  void add() async {
-    final prefs = await SharedPreferences.getInstance();
-    final res = prefs.getString("Stud");
-    try {
-      List _details = jsonDecode(res!);
-      data["name"] = _c1.text;
-      data["age"] = _c2.text;
-      data["date"] = _c3.text;
-      data["email"] = _c4.text;
-      data["no"] = _c5.text;
-      data["gender"] = _c6.text;
-      data["add"] = _c6.text;
-      data["course"] = _c8.text;
-      _details.add(data);
-      prefs.setString("Stud", jsonEncode(_details));
-      get();
-    } catch (error) {
-      List _details = [
-        {
-          "name": _c1.text,
-          "age": _c2.text,
-          "date": _c3.text,
-          "email": _c4.text,
-          "no": _c5.text,
-          "gender": _c6.text,
-          "add": _c7.text,
-          "course": _c8.text
-        }
-      ];
-      prefs.setString("Stud", jsonEncode(_details));
-      get();
-    }
-    // print(details);
-  }
-
   @override
   Widget build(BuildContext context) {
+    final int msg =
+        jsonDecode(ModalRoute.of(context)?.settings.arguments as String);
+
+    void edit() {
+      details[msg]["name"] = _c1.text;
+      get();
+    }
+
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 241, 251, 252),
-        title: Text(
-          "STUDENT DETAILS",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-      ),
       body: Container(
-        height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         color: const Color.fromARGB(255, 241, 251, 252),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -424,7 +391,7 @@ class _InputpageState extends State<Inputpage> {
                       shadowColor: const Color.fromARGB(255, 92, 231, 250),
                     ),
                     onPressed: () {
-                      add();
+                      // add();
                       Navigator.pushNamedAndRemoveUntil(
                         context,
                         "/home",

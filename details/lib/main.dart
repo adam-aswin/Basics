@@ -1,3 +1,4 @@
+import 'package:details/pages/editpage.dart';
 import 'package:details/pages/homepage.dart';
 import 'package:details/pages/inputpage.dart';
 import 'package:details/pages/outputpage.dart';
@@ -10,6 +11,7 @@ void main(){
       "/home":(context)=>Homepage(),
       "/input":(context)=>Inputpage(),
       "/output":(context)=>Outputpage(),
+      "/edit":(context)=>Editpage(),
     },
   ));
 }

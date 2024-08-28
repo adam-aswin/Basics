@@ -64,7 +64,7 @@ class _HomepageState extends State<Homepage> {
                       context,
                       "/output",
                       arguments: jsonEncode(
-                        tasks[index],
+                        index,
                       ),
                     );
                   },
