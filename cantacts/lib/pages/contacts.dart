@@ -22,7 +22,9 @@ class _ContactsState extends State<Contacts> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blueAccent[700],
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, "/add");
+        },
         child: Icon(
           Icons.add,
           color: Colors.black,

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
     initialRoute: "/contact",
+    home: Contacts(),
     routes: {
       "/contact":(context)=>Contacts(),
       "/add":(context)=>Addcontacts(),
