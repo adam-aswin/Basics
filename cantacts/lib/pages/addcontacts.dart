@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Addcontacts extends StatefulWidget {
   const Addcontacts({super.key});
@@ -17,6 +19,7 @@ class _AddcontactsState extends State<Addcontacts> {
   TextEditingController email = TextEditingController();
   File? _image;
   final ImagePicker _picker = ImagePicker();
+  List<dynamic> cnt = [];
 
   void gallery() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
@@ -41,23 +44,68 @@ class _AddcontactsState extends State<Addcontacts> {
   }
 
   void pickimage() async {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Choose a File"),
-            actions: [
-              TextButton(
-                onPressed: gallery,
-                child: Text("Gallery"),
+    if (_image == null) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: Colors.grey[800],
+              title: Text(
+                "Choose a File",
+                style: TextStyle(color: Colors.white),
               ),
-              TextButton(
-                onPressed: camera,
-                child: Text("Camera"),
-              ),
-            ],
-          );
-        });
+              actions: [
+                TextButton(
+                  onPressed: gallery,
+                  child: Text(
+                    "Gallery",
+                    style: TextStyle(color: Colors.blueAccent[700]),
+                  ),
+                ),
+                TextButton(
+                  onPressed: camera,
+                  child: Text(
+                    "Camera",
+                    style: TextStyle(color: Colors.blueAccent[700]),
+                  ),
+                ),
+              ],
+            );
+          });
+    } else {
+      print("null");
+    }
+  }
+
+  void saveData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final res = prefs.getString("contact");
+    final bytes = await _image!.readAsBytes();
+    final base64img = base64Encode(bytes);
+    try {
+      cnt = jsonDecode(res!);
+      cnt.add({
+        "fname": fname.text,
+        "lname": lname.text,
+        "phone": phone.text,
+        "email": email.text,
+        "photo": base64img,
+      });
+      prefs.setString("contact", jsonEncode(cnt));
+    } catch (error) {
+      cnt = [
+        {
+          "fname": fname.text,
+          "lname": lname.text,
+          "phone": phone.text,
+          "email": email.text,
+          "photo": base64img,
+        }
+      ];
+      prefs.setString("contact", jsonEncode(cnt));
+    }
+    print(cnt);
+    Navigator.pushNamedAndRemoveUntil(context, "/contact", (route) => false);
   }
 
   @override
@@ -80,7 +128,7 @@ class _AddcontactsState extends State<Addcontacts> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+        padding: EdgeInsets.all(30),
         child: ListView(
           // scrollDirection: Axis.horizontal,
           children: [
@@ -92,25 +140,37 @@ class _AddcontactsState extends State<Addcontacts> {
                 child: Container(
                   width: 100,
                   height: 100,
-                  padding: EdgeInsets.all(25),
+                  //
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     color: Colors.grey[800],
                   ),
-                  child: Image.asset(
-                    "./lib/icons/user.png",
-                    fit: BoxFit.cover,
+                  child: ClipOval(
+                    child: _image != null
+                        ? Image.file(
+                            _image!,
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          )
+                        : Container(
+                            padding: EdgeInsets.all(25),
+                            child: Image.asset(
+                              "./lib/icons/user.png",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                   ),
                 ),
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 25,
             ),
             Container(
               // margin: EdgeInsets.only(left: 50, right: 50),
               width: MediaQuery.of(context).size.width,
-              height: 48,
+              height: 55,
               // padding: EdgeInsets.only(left: 30, right: 30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -133,7 +193,7 @@ class _AddcontactsState extends State<Addcontacts> {
                       width: 2,
                     ),
                   ),
-                  labelText: "First Name",
+                  // labelText: "First Name",
                   hintText: "First Name",
                   labelStyle: TextStyle(
                     color: Colors.white60,
@@ -145,12 +205,12 @@ class _AddcontactsState extends State<Addcontacts> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 15,
             ),
             Container(
               // margin: EdgeInsets.only(left: 50, right: 50),
               width: MediaQuery.of(context).size.width,
-              height: 48,
+              height: 55,
               // padding: EdgeInsets.only(left: 30, right: 30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -173,7 +233,7 @@ class _AddcontactsState extends State<Addcontacts> {
                       width: 2,
                     ),
                   ),
-                  labelText: "Second Name",
+                  // labelText: "Second Name",
                   hintText: "Second Name",
                   labelStyle: TextStyle(
                     color: Colors.white60,
@@ -185,12 +245,12 @@ class _AddcontactsState extends State<Addcontacts> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 15,
             ),
             Container(
               // margin: EdgeInsets.only(left: 50, right: 50),
               width: MediaQuery.of(context).size.width,
-              height: 48,
+              height: 55,
               // padding: EdgeInsets.only(left: 30, right: 30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -213,7 +273,7 @@ class _AddcontactsState extends State<Addcontacts> {
                       width: 2,
                     ),
                   ),
-                  labelText: "Phone Number",
+                  // labelText: "Phone Number",
                   hintText: "Phone Number",
                   labelStyle: TextStyle(
                     color: Colors.white60,
@@ -225,12 +285,12 @@ class _AddcontactsState extends State<Addcontacts> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 15,
             ),
             Container(
               // margin: EdgeInsets.only(left: 50, right: 50),
               width: MediaQuery.of(context).size.width,
-              height: 48,
+              height: 55,
               // padding: EdgeInsets.only(left: 30, right: 30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -244,6 +304,7 @@ class _AddcontactsState extends State<Addcontacts> {
                 ),
                 decoration: InputDecoration(
                   enabled: true,
+                  // : Colors.black,
                   enabledBorder:
                       OutlineInputBorder(borderSide: BorderSide.none),
                   focusedBorder: OutlineInputBorder(
@@ -253,7 +314,7 @@ class _AddcontactsState extends State<Addcontacts> {
                       width: 2,
                     ),
                   ),
-                  labelText: "Email",
+                  // labelText: "Email",
                   hintText: "Email",
                   labelStyle: TextStyle(
                     color: Colors.white60,
@@ -265,32 +326,22 @@ class _AddcontactsState extends State<Addcontacts> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 15,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(
-                    left: 80,
-                  ),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.all(20),
-                      backgroundColor: Colors.blueAccent[700],
-                      foregroundColor: Colors.black,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Text("ADD"),
-                  ),
-                ),
-              ],
-            )
           ],
         ),
+      ),
+      floatingActionButton: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          padding: EdgeInsets.all(20),
+          backgroundColor: Colors.blueAccent[700],
+          foregroundColor: Colors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        onPressed: saveData,
+        child: Text("ADD"),
       ),
     );
   }
