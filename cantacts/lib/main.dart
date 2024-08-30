@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
     initialRoute: "/contact",
-    home: Contacts(),
+    // home: Contacts(),
     routes: {
-      "/contact":(context)=>Contacts(),
-      "/add":(context)=>Addcontacts(),
-      "/display":(context)=>Displaycontacts(),
+      "/contact": (context) => Contacts(),
+      "/add": (context) => Addcontacts(),
+      "/display": (context) => Displaycontacts(),
     },
   ));
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,7 +14,8 @@ class Contacts extends StatefulWidget {
 
 class _ContactsState extends State<Contacts> {
   List cnt = [];
-  // File? _image;
+  Uint8List? _image;
+  // int index = 1;
 
   @override
   void initState() {
@@ -27,6 +29,7 @@ class _ContactsState extends State<Contacts> {
     final res = prefs.getString("contact");
     setState(() {
       cnt = jsonDecode(res!);
+      // _image = base64Decode(cnt[index]["photo"]);
     });
     print(cnt);
   }
@@ -48,10 +51,18 @@ class _ContactsState extends State<Contacts> {
         child: ListView.builder(
           itemCount: cnt.length,
           itemBuilder: (context, index) {
-            return Container(
-              height: 40,
-              width: MediaQuery.of(context).size.width,
-              child: Row(
+            return ListTile(
+              onTap: () {},
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Image.memory(
+                  _image = base64Decode(cnt[index]["photo"]),
+                  width: 40,
+                  height: 40,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              title: Row(
                 children: [
                   Text(
                     cnt[index]["fname"],
@@ -71,6 +82,10 @@ class _ContactsState extends State<Contacts> {
                     ),
                   ),
                 ],
+              ),
+              trailing: Icon(
+                Icons.more_vert,
+                color: Colors.white,
               ),
             );
           },
