@@ -33,6 +33,20 @@ class _DisplaycontactsState extends State<Displaycontacts> {
     print(contact![index!]["fname"]);
   }
 
+  void delete() async {
+    final prefs = await SharedPreferences.getInstance();
+    final res = prefs.getString("contact");
+    contact = jsonDecode(res!);
+    contact!.removeAt(index!);
+    prefs.setString("contact", jsonEncode(contact));
+    Navigator.pushNamedAndRemoveUntil(context, "/contact", (route) => false);
+    // show();
+  }
+
+  void edit() {
+    Navigator.pushNamed(context, "/edit");
+  }
+
   @override
   Widget build(BuildContext context) {
     index = int.parse(ModalRoute.of(context)!.settings.arguments as String);
@@ -144,7 +158,7 @@ class _DisplaycontactsState extends State<Displaycontacts> {
                     color: Colors.grey[900],
                   ),
                   child: Icon(
-                    Icons.video_call,
+                    Icons.video_call_rounded,
                     color: Colors.white,
                   ),
                 ),
@@ -164,12 +178,35 @@ class _DisplaycontactsState extends State<Displaycontacts> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Contact Info",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Contact Info",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Spacer(),
+                      GestureDetector(
+                        onTap: edit,
+                        child: Icon(
+                          Icons.edit,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      GestureDetector(
+                        onTap: delete,
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 10,
@@ -206,7 +243,7 @@ class _DisplaycontactsState extends State<Displaycontacts> {
                       ),
                       Spacer(),
                       Icon(
-                        Icons.video_call,
+                        Icons.video_call_rounded,
                         color: Colors.white,
                       ),
                       SizedBox(
@@ -218,6 +255,87 @@ class _DisplaycontactsState extends State<Displaycontacts> {
                       ),
                     ],
                   ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 120,
+              padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.grey[900],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Connected apps",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.email,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      contact != null
+                          ? Text(
+                              contact![index!]["email"],
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                            )
+                          : Text("NULL"),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        height: 22,
+                        width: 22,
+                        child: Image.asset(
+                          "./lib/icons/whatsapp.png",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "+91 ",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                      contact != null
+                          ? Text(
+                              contact![index!]["phone"],
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                            )
+                          : Text("NULL"),
+                    ],
+                  )
                 ],
               ),
             )
