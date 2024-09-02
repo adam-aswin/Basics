@@ -116,6 +116,13 @@ class _AddcontactsState extends State<Addcontacts> {
         iconTheme: IconThemeData(
           color: Colors.white,
         ),
+        actions: [
+          IconButton(
+              onPressed: saveData,
+              icon: Icon(
+                Icons.done,
+              ))
+        ],
         backgroundColor: Colors.black,
         title: Text(
           "ADD CONTACT",
@@ -174,7 +181,7 @@ class _AddcontactsState extends State<Addcontacts> {
               // padding: EdgeInsets.only(left: 30, right: 30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.grey[800],
+                color: Colors.grey[900],
               ),
               child: TextField(
                 controller: fname,
@@ -214,7 +221,7 @@ class _AddcontactsState extends State<Addcontacts> {
               // padding: EdgeInsets.only(left: 30, right: 30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.grey[800],
+                color: Colors.grey[900],
               ),
               child: TextField(
                 controller: lname,
@@ -254,7 +261,7 @@ class _AddcontactsState extends State<Addcontacts> {
               // padding: EdgeInsets.only(left: 30, right: 30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.grey[800],
+                color: Colors.grey[900],
               ),
               child: TextField(
                 controller: phone,
@@ -294,7 +301,7 @@ class _AddcontactsState extends State<Addcontacts> {
               // padding: EdgeInsets.only(left: 30, right: 30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.grey[800],
+                color: Colors.grey[900],
               ),
               child: TextField(
                 controller: email,
@@ -331,18 +338,18 @@ class _AddcontactsState extends State<Addcontacts> {
           ],
         ),
       ),
-      floatingActionButton: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(20),
-          backgroundColor: Colors.blueAccent[700],
-          foregroundColor: Colors.black,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        onPressed: saveData,
-        child: Text("ADD"),
-      ),
+      // floatingActionButton: ElevatedButton(
+      //   style: ElevatedButton.styleFrom(
+      //     padding: EdgeInsets.all(20),
+      //     backgroundColor: Colors.blueAccent[700],
+      //     foregroundColor: Colors.black,
+      //     shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(10),
+      //     ),
+      //   ),
+      //   onPressed: saveData,
+      //   child: Text("ADD"),
+      // ),
     );
   }
 }

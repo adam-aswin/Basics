@@ -44,7 +44,7 @@ class _DisplaycontactsState extends State<Displaycontacts> {
   }
 
   void edit() {
-    Navigator.pushNamed(context, "/edit");
+    Navigator.pushNamed(context, "/edit",arguments: index.toString());
   }
 
   @override
@@ -317,13 +317,6 @@ class _DisplaycontactsState extends State<Displaycontacts> {
                       ),
                       SizedBox(
                         width: 20,
-                      ),
-                      Text(
-                        "+91 ",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
                       ),
                       contact != null
                           ? Text(

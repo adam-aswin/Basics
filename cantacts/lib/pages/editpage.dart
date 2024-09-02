@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,17 +18,44 @@ class _EditpageState extends State<Editpage> {
   TextEditingController lname = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController email = TextEditingController();
-  File? _image;
+  Uint8List? _image;
+  File? img;
   final ImagePicker _picker = ImagePicker();
-  List<dynamic> cnt = [];
+  List<dynamic>? cnt;
+  int? index;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    editdata();
+  }
+
+  void editdata() async {
+    final prefs = await SharedPreferences.getInstance();
+    final res = prefs.getString("contact");
+    // final bytes = await _image!.readAsBytes();
+    // final base64img = base64Encode(bytes);
+    setState(() {
+      cnt = jsonDecode(res!);
+      fname.text = cnt![index!]["fname"];
+      lname.text = cnt![index!]["lname"];
+      phone.text = cnt![index!]["phone"];
+      email.text = cnt![index!]["email"];
+      _image = base64Decode(cnt![index!]["photo"]);
+    });
+    print(cnt);
+    // Navigator.pushNamedAndRemoveUntil(context, "/contact", (route) => false);
+  }
 
   void gallery() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     setState(() {
       if (pickedFile != null) {
-        _image = File(pickedFile.path);
+        img = File(pickedFile.path);
       } else {
         print("null");
+        // img = File(pickedFile!.path);
       }
     });
   }
@@ -36,15 +64,16 @@ class _EditpageState extends State<Editpage> {
     final pickedFile = await _picker.pickImage(source: ImageSource.camera);
     setState(() {
       if (pickedFile != null) {
-        _image = File(pickedFile.path);
+        img = File(pickedFile.path);
       } else {
         print("null");
+        // img = File(pickedFile!.path);
       }
     });
   }
 
   void pickimage() async {
-    if (_image == null) {
+    if (img == null) {
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -77,20 +106,20 @@ class _EditpageState extends State<Editpage> {
     }
   }
 
-  void saveData() async {
+  void saveData()async{
     final prefs = await SharedPreferences.getInstance();
     final res = prefs.getString("contact");
-    final bytes = await _image!.readAsBytes();
+    final bytes = await img!.readAsBytes();
     final base64img = base64Encode(bytes);
     try {
       cnt = jsonDecode(res!);
-      cnt.add({
+      cnt![index!]={
         "fname": fname.text,
         "lname": lname.text,
         "phone": phone.text,
         "email": email.text,
         "photo": base64img,
-      });
+      };
       prefs.setString("contact", jsonEncode(cnt));
     } catch (error) {
       cnt = [
@@ -110,12 +139,25 @@ class _EditpageState extends State<Editpage> {
 
   @override
   Widget build(BuildContext context) {
+    index = int.parse(ModalRoute.of(context)!.settings.arguments as String);
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.white,
         ),
+        actions: [
+          TextButton(
+            onPressed: saveData,
+            child: Text(
+              "EDIT",
+              style: TextStyle(
+                color: Colors.blueAccent[700],
+                fontSize: 15,
+              ),
+            ),
+          )
+        ],
         backgroundColor: Colors.black,
         title: Text(
           "EDIT CONTACT",
@@ -146,20 +188,25 @@ class _EditpageState extends State<Editpage> {
                     color: Colors.grey[800],
                   ),
                   child: ClipOval(
-                    child: _image != null
+                    child: img != null
                         ? Image.file(
-                            _image!,
+                            img!,
                             width: 100,
                             height: 100,
                             fit: BoxFit.cover,
                           )
-                        : Container(
-                            padding: EdgeInsets.all(25),
-                            child: Image.asset(
-                              "./lib/icons/user.png",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                        : _image != null
+                            ? Image.memory(
+                                _image!,
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              )
+                            : Container(
+                                width: 100,
+                                height: 100,
+                                child: Text("No Photo"),
+                              ),
                   ),
                 ),
               ),
@@ -331,18 +378,20 @@ class _EditpageState extends State<Editpage> {
           ],
         ),
       ),
-      floatingActionButton: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(20),
-          backgroundColor: Colors.blueAccent[700],
-          foregroundColor: Colors.black,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        onPressed: saveData,
-        child: Text("EDIT"),
-      ),
+      // floatingActionButton: ElevatedButton(
+      //   style: ElevatedButton.styleFrom(
+      //     padding: EdgeInsets.all(20),
+      //     backgroundColor: Colors.blueAccent[700],
+      //     foregroundColor: Colors.black,
+      //     shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(10),
+      //     ),
+      //   ),
+      //   onPressed: saveData,
+      //   child: Text("EDIT"),
+      // ),
     );
   }
 }
+
+
