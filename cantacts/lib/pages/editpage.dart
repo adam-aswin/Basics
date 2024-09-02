@@ -23,6 +23,7 @@ class _EditpageState extends State<Editpage> {
   final ImagePicker _picker = ImagePicker();
   List<dynamic>? cnt;
   int? index;
+  String? base;
 
   @override
   void initState() {
@@ -106,19 +107,24 @@ class _EditpageState extends State<Editpage> {
     }
   }
 
-  void saveData()async{
+  void saveData() async {
     final prefs = await SharedPreferences.getInstance();
     final res = prefs.getString("contact");
-    final bytes = await img!.readAsBytes();
-    final base64img = base64Encode(bytes);
+    if (img != null) {
+      final bytes = await img!.readAsBytes();
+      final base64img = base64Encode(bytes);
+      base = base64img;
+    } else {
+      base = base64Encode(_image!);
+    }
     try {
       cnt = jsonDecode(res!);
-      cnt![index!]={
+      cnt![index!] = {
         "fname": fname.text,
         "lname": lname.text,
         "phone": phone.text,
         "email": email.text,
-        "photo": base64img,
+        "photo": base,
       };
       prefs.setString("contact", jsonEncode(cnt));
     } catch (error) {
@@ -128,7 +134,7 @@ class _EditpageState extends State<Editpage> {
           "lname": lname.text,
           "phone": phone.text,
           "email": email.text,
-          "photo": base64img,
+          "photo": base,
         }
       ];
       prefs.setString("contact", jsonEncode(cnt));
@@ -393,5 +399,3 @@ class _EditpageState extends State<Editpage> {
     );
   }
 }
-
-
