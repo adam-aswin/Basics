@@ -17,9 +17,12 @@ class _AddcontactsState extends State<Addcontacts> {
   TextEditingController lname = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController email = TextEditingController();
+  TextEditingController state = TextEditingController();
+  TextEditingController country = TextEditingController();
   File? _image;
   final ImagePicker _picker = ImagePicker();
   List<dynamic> cnt = [];
+  String? base;
 
   void gallery() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
@@ -80,8 +83,11 @@ class _AddcontactsState extends State<Addcontacts> {
   void saveData() async {
     final prefs = await SharedPreferences.getInstance();
     final res = prefs.getString("contact");
-    final bytes = await _image!.readAsBytes();
-    final base64img = base64Encode(bytes);
+    if (_image != null) {
+      final bytes = await _image!.readAsBytes();
+      final base64img = base64Encode(bytes);
+      base = base64img;
+    }
     try {
       cnt = jsonDecode(res!);
       cnt.add({
@@ -89,7 +95,9 @@ class _AddcontactsState extends State<Addcontacts> {
         "lname": lname.text,
         "phone": phone.text,
         "email": email.text,
-        "photo": base64img,
+        "photo": base,
+        "state": state.text,
+        "country": country.text,
       });
       prefs.setString("contact", jsonEncode(cnt));
     } catch (error) {
@@ -99,7 +107,9 @@ class _AddcontactsState extends State<Addcontacts> {
           "lname": lname.text,
           "phone": phone.text,
           "email": email.text,
-          "photo": base64img,
+          "photo": base,
+          "state": state.text,
+          "country": country.text,
         }
       ];
       prefs.setString("contact", jsonEncode(cnt));
@@ -323,6 +333,88 @@ class _AddcontactsState extends State<Addcontacts> {
                   ),
                   // labelText: "Email",
                   hintText: "Email",
+                  labelStyle: TextStyle(
+                    color: Colors.white60,
+                  ),
+                  hintStyle: TextStyle(
+                    color: Colors.white60,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              // margin: EdgeInsets.only(left: 50, right: 50),
+              width: MediaQuery.of(context).size.width,
+              height: 55,
+              // padding: EdgeInsets.only(left: 30, right: 30),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey[900],
+              ),
+              child: TextField(
+                controller: state,
+                keyboardType: TextInputType.emailAddress,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                decoration: InputDecoration(
+                  enabled: true,
+                  // : Colors.black,
+                  enabledBorder:
+                      OutlineInputBorder(borderSide: BorderSide.none),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: const Color.fromARGB(255, 44, 120, 252),
+                      width: 2,
+                    ),
+                  ),
+                  // labelText: "Email",
+                  hintText: "State",
+                  labelStyle: TextStyle(
+                    color: Colors.white60,
+                  ),
+                  hintStyle: TextStyle(
+                    color: Colors.white60,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              // margin: EdgeInsets.only(left: 50, right: 50),
+              width: MediaQuery.of(context).size.width,
+              height: 55,
+              // padding: EdgeInsets.only(left: 30, right: 30),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey[900],
+              ),
+              child: TextField(
+                controller: country,
+                keyboardType: TextInputType.emailAddress,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                decoration: InputDecoration(
+                  enabled: true,
+                  // : Colors.black,
+                  enabledBorder:
+                      OutlineInputBorder(borderSide: BorderSide.none),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: const Color.fromARGB(255, 44, 120, 252),
+                      width: 2,
+                    ),
+                  ),
+                  // labelText: "Email",
+                  hintText: "Country",
                   labelStyle: TextStyle(
                     color: Colors.white60,
                   ),

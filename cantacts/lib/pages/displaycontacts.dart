@@ -28,7 +28,9 @@ class _DisplaycontactsState extends State<Displaycontacts> {
     final res = prefs.getString("contact");
     setState(() {
       contact = jsonDecode(res!);
-      _image = base64Decode(contact![index!]["photo"]);
+      if (contact![index!]["photo"] != null) {
+        _image = base64Decode(contact![index!]["photo"]);
+      }
     });
     print(contact![index!]["fname"]);
   }
@@ -44,7 +46,7 @@ class _DisplaycontactsState extends State<Displaycontacts> {
   }
 
   void edit() {
-    Navigator.pushNamed(context, "/edit",arguments: index.toString());
+    Navigator.pushNamed(context, "/edit", arguments: index.toString());
   }
 
   @override
@@ -78,47 +80,82 @@ class _DisplaycontactsState extends State<Displaycontacts> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ClipOval(
-                child: _image != null
-                    ? Image.memory(
-                        _image!,
-                        width: 150,
-                        height: 150,
-                        fit: BoxFit.cover,
-                      )
-                    : Container(
-                        width: 150,
-                        height: 150,
-                        color: Colors.grey,
-                        child: Text("No photo"),
-                      )),
+              child: _image != null
+                  ? Image.memory(
+                      _image = base64Decode(contact![index!]["photo"]),
+                      width: 150,
+                      height: 150,
+                      fit: BoxFit.cover,
+                    )
+                  : Image.asset(
+                      "./lib/icons/user.png",
+                      width: 140,
+                      height: 140,
+                      fit: BoxFit.cover,
+                    ),
+            ),
             SizedBox(
               height: 10,
             ),
-            Container(
-              child: contact != null
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          contact![index!]["fname"],
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          contact![index!]["lname"],
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                          ),
-                        ),
-                      ],
-                    )
-                  : Text("NULL"),
+            Column(
+              children: [
+                Container(
+                  child: contact != null
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              contact![index!]["fname"],
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              contact![index!]["lname"],
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                              ),
+                            ),
+                          ],
+                        )
+                      : Text("NULL"),
+                ),
+                Container(
+                  child: contact != null
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              contact![index!]["state"],
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 16,
+                              ),
+                            ),
+                            Text(
+                              ", ",
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 16,
+                              ),
+                            ),
+                            Text(
+                              contact![index!]["country"],
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        )
+                      : Text("NULL"),
+                ),
+              ],
             ),
             SizedBox(
               height: 20,

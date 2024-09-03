@@ -28,10 +28,13 @@ class _ContactsState extends State<Contacts> {
     final prefs = await SharedPreferences.getInstance();
     final res = prefs.getString("contact");
     setState(() {
-      cnt = jsonDecode(res!);
+      if (res != null) {
+        cnt = jsonDecode(res);
+      }
       // _image = base64Decode(cnt[index]["photo"]);
     });
     // print(cnt);
+    // cnt.removeLast();
   }
 
   @override
@@ -58,12 +61,19 @@ class _ContactsState extends State<Contacts> {
                 },
                 leading: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
-                  child: Image.memory(
-                    _image = base64Decode(cnt[index]["photo"]),
-                    width: 40,
-                    height: 40,
-                    fit: BoxFit.cover,
-                  ),
+                  child: cnt[index]["photo"] != null
+                      ? Image.memory(
+                          _image = base64Decode(cnt[index]["photo"]),
+                          width: 40,
+                          height: 40,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.asset(
+                          "./lib/icons/user.png",
+                          width: 40,
+                          height: 40,
+                          fit: BoxFit.cover,
+                        ),
                 ),
                 title: Row(
                   children: [

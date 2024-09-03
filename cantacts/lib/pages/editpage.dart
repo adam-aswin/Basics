@@ -18,6 +18,8 @@ class _EditpageState extends State<Editpage> {
   TextEditingController lname = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController email = TextEditingController();
+  TextEditingController state = TextEditingController();
+  TextEditingController country = TextEditingController();
   Uint8List? _image;
   File? img;
   final ImagePicker _picker = ImagePicker();
@@ -43,7 +45,11 @@ class _EditpageState extends State<Editpage> {
       lname.text = cnt![index!]["lname"];
       phone.text = cnt![index!]["phone"];
       email.text = cnt![index!]["email"];
-      _image = base64Decode(cnt![index!]["photo"]);
+      state.text = cnt![index!]["state"];
+      country.text = cnt![index!]["country"];
+      if (cnt![index!]["photo"] != null) {
+        _image = base64Decode(cnt![index!]["photo"]);
+      }
     });
     print(cnt);
     // Navigator.pushNamedAndRemoveUntil(context, "/contact", (route) => false);
@@ -125,6 +131,8 @@ class _EditpageState extends State<Editpage> {
         "phone": phone.text,
         "email": email.text,
         "photo": base,
+        "state": state.text,
+        "country": country.text,
       };
       prefs.setString("contact", jsonEncode(cnt));
     } catch (error) {
@@ -135,6 +143,8 @@ class _EditpageState extends State<Editpage> {
           "phone": phone.text,
           "email": email.text,
           "photo": base,
+          "state": state.text,
+          "country": country.text,
         }
       ];
       prefs.setString("contact", jsonEncode(cnt));
@@ -156,7 +166,7 @@ class _EditpageState extends State<Editpage> {
           TextButton(
             onPressed: saveData,
             child: Text(
-              "EDIT",
+              "SAVE",
               style: TextStyle(
                 color: Colors.blueAccent[700],
                 fontSize: 15,
@@ -208,10 +218,11 @@ class _EditpageState extends State<Editpage> {
                                 height: 100,
                                 fit: BoxFit.cover,
                               )
-                            : Container(
-                                width: 100,
-                                height: 100,
-                                child: Text("No Photo"),
+                            : Image.asset(
+                                "./lib/icons/user.png",
+                                width: 150,
+                                height: 150,
+                                fit: BoxFit.cover,
                               ),
                   ),
                 ),
@@ -227,7 +238,7 @@ class _EditpageState extends State<Editpage> {
               // padding: EdgeInsets.only(left: 30, right: 30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.grey[800],
+                color: Colors.grey[900],
               ),
               child: TextField(
                 controller: fname,
@@ -267,7 +278,7 @@ class _EditpageState extends State<Editpage> {
               // padding: EdgeInsets.only(left: 30, right: 30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.grey[800],
+                color: Colors.grey[900],
               ),
               child: TextField(
                 controller: lname,
@@ -307,7 +318,7 @@ class _EditpageState extends State<Editpage> {
               // padding: EdgeInsets.only(left: 30, right: 30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.grey[800],
+                color: Colors.grey[900],
               ),
               child: TextField(
                 controller: phone,
@@ -347,7 +358,7 @@ class _EditpageState extends State<Editpage> {
               // padding: EdgeInsets.only(left: 30, right: 30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.grey[800],
+                color: Colors.grey[900],
               ),
               child: TextField(
                 controller: email,
@@ -369,6 +380,88 @@ class _EditpageState extends State<Editpage> {
                   ),
                   // labelText: "Email",
                   hintText: "Email",
+                  labelStyle: TextStyle(
+                    color: Colors.white60,
+                  ),
+                  hintStyle: TextStyle(
+                    color: Colors.white60,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              // margin: EdgeInsets.only(left: 50, right: 50),
+              width: MediaQuery.of(context).size.width,
+              height: 55,
+              // padding: EdgeInsets.only(left: 30, right: 30),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey[900],
+              ),
+              child: TextField(
+                controller: state,
+                keyboardType: TextInputType.emailAddress,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                decoration: InputDecoration(
+                  enabled: true,
+                  // : Colors.black,
+                  enabledBorder:
+                      OutlineInputBorder(borderSide: BorderSide.none),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: const Color.fromARGB(255, 44, 120, 252),
+                      width: 2,
+                    ),
+                  ),
+                  // labelText: "Email",
+                  hintText: "State",
+                  labelStyle: TextStyle(
+                    color: Colors.white60,
+                  ),
+                  hintStyle: TextStyle(
+                    color: Colors.white60,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              // margin: EdgeInsets.only(left: 50, right: 50),
+              width: MediaQuery.of(context).size.width,
+              height: 55,
+              // padding: EdgeInsets.only(left: 30, right: 30),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey[900],
+              ),
+              child: TextField(
+                controller: country,
+                keyboardType: TextInputType.emailAddress,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                decoration: InputDecoration(
+                  enabled: true,
+                  // : Colors.black,
+                  enabledBorder:
+                      OutlineInputBorder(borderSide: BorderSide.none),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: const Color.fromARGB(255, 44, 120, 252),
+                      width: 2,
+                    ),
+                  ),
+                  // labelText: "Email",
+                  hintText: "Country",
                   labelStyle: TextStyle(
                     color: Colors.white60,
                   ),
