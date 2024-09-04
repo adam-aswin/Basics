@@ -220,9 +220,9 @@ class _EditpageState extends State<Editpage> {
                               )
                             : Image.asset(
                                 "./lib/icons/user.png",
-                                width: 150,
-                                height: 150,
-                                fit: BoxFit.cover,
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.contain,
                               ),
                   ),
                 ),

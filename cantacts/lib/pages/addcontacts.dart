@@ -29,6 +29,7 @@ class _AddcontactsState extends State<Addcontacts> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
+        Navigator.pop(context);
       } else {
         print("null");
       }
@@ -40,6 +41,7 @@ class _AddcontactsState extends State<Addcontacts> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
+        Navigator.pop(context);
       } else {
         print("null");
       }
@@ -150,7 +152,9 @@ class _AddcontactsState extends State<Addcontacts> {
           // scrollDirection: Axis.horizontal,
           children: [
             GestureDetector(
-              onTap: pickimage,
+              onTap: () {
+                pickimage();
+              },
               child: Container(
                 margin: EdgeInsets.only(top: 50),
                 alignment: Alignment.center,

@@ -45,6 +45,41 @@ class _DisplaycontactsState extends State<Displaycontacts> {
     // show();
   }
 
+  void pick() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: Colors.grey[800],
+            title: Text(
+              "Do you want to delete this\ncontact ?",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  "Cancel",
+                  style: TextStyle(color: Colors.blueAccent[700]),
+                ),
+              ),
+              TextButton(
+                onPressed: delete,
+                child: Text(
+                  "Ok",
+                  style: TextStyle(color: Colors.blueAccent[700]),
+                ),
+              ),
+            ],
+          );
+        });
+  }
+
   void edit() {
     Navigator.pushNamed(context, "/edit", arguments: index.toString());
   }
@@ -237,7 +272,7 @@ class _DisplaycontactsState extends State<Displaycontacts> {
                         width: 15,
                       ),
                       GestureDetector(
-                        onTap: delete,
+                        onTap: pick,
                         child: Icon(
                           Icons.delete,
                           color: Colors.white,
