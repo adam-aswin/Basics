@@ -110,7 +110,10 @@ class _WorkOpacityState extends State<WorkOpacity> {
               child: Container(
                 width: 100,
                 height: 100,
-                color: Colors.blue,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.blue,
+                ),
                 child: Center(
                   child: Text(sum.toString()),
                 ),
