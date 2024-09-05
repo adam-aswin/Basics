@@ -60,7 +60,18 @@ class _HomescreenState extends State<Homescreen> {
                         ),
                       ),
                       Spacer(),
-                      Text(""),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.bloodtype,
+                            color: const Color.fromARGB(255, 168, 12, 0),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text("Be a Life Saver"),
+                        ],
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -72,6 +83,60 @@ class _HomescreenState extends State<Homescreen> {
                   )
                 ],
               ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * .45,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * .45,
+                  height: 120,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 5,
+                          spreadRadius: 1,
+                          color: Colors.black26,
+                          offset: Offset(5, 5),
+                        )
+                      ]),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 80,
+                        width: 80,
+                        child: Image.asset("./images/add.webp"),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                          height: 30,
+                          width: 80,
+                          child: Text(
+                            "Add Donor",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ))
+                    ],
+                  ),
+                )
+              ],
             )
           ],
         ),
