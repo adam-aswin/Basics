@@ -16,7 +16,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 253, 242, 242),
+      backgroundColor: const Color.fromARGB(255, 247, 230, 230),
       bottomNavigationBar: CurvedNavigationBar(
         onTap: (value) {
           setState(() {
@@ -33,7 +33,7 @@ class _HomepageState extends State<Homepage> {
             color: const Color.fromARGB(255, 248, 206, 206),
           ),
           Icon(
-            Icons.add,
+            Icons.person,
             color: const Color.fromARGB(255, 248, 206, 206),
           ),
         ],
