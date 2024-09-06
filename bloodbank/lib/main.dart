@@ -8,6 +8,7 @@ void main() {
     home: Homepage(),
     routes: {
       "/home": (context) => Homescreen(),
+      "/home1": (context) => Homepage(),
       "/add": (context) => Addpage(),
     },
   ));

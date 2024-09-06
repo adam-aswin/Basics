@@ -8,6 +8,7 @@ class Addpage extends StatefulWidget {
 }
 
 class _AddpageState extends State<Addpage> {
+  TextEditingController c5 = TextEditingController();
   String? _selectedblood;
   final List<String> bloodgroup = [
     "A-",
@@ -19,6 +20,21 @@ class _AddpageState extends State<Addpage> {
     "B+",
     "B-",
   ];
+  void dob() {
+    RegExp reg = RegExp(r'([0-2]\d||3[0-1])-(0\d||1[0-2])-(\d{4})$');
+    reg.hasMatch(c5.text)
+        ? Navigator.pushNamed(context, "/home1")
+        : showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                backgroundColor: const Color.fromARGB(255, 247, 230, 230),
+                title: Text("Incorrect Date"),
+              );
+            });
+    c5.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +52,7 @@ class _AddpageState extends State<Addpage> {
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, "/home");
+                  dob();
                 },
                 icon: Icon(
                   Icons.done,
@@ -120,7 +136,7 @@ class _AddpageState extends State<Addpage> {
                           width: 20,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * .7,
+                          width: MediaQuery.of(context).size.width * .63,
                           height: 50,
                           padding: EdgeInsets.all(10),
                           // margin: EdgeInsets.only(left: 30, right: 30),
@@ -158,7 +174,7 @@ class _AddpageState extends State<Addpage> {
                           width: 20,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * .7,
+                          width: MediaQuery.of(context).size.width * .63,
                           height: 50,
                           padding: EdgeInsets.all(10),
                           // margin: EdgeInsets.only(left: 30, right: 30),
@@ -197,7 +213,7 @@ class _AddpageState extends State<Addpage> {
                           width: 20,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * .7,
+                          width: MediaQuery.of(context).size.width * .63,
                           height: 50,
                           padding: EdgeInsets.all(10),
                           // margin: EdgeInsets.only(left: 30, right: 30),
@@ -236,7 +252,7 @@ class _AddpageState extends State<Addpage> {
                           width: 20,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * .7,
+                          width: MediaQuery.of(context).size.width * .63,
                           height: 50,
                           padding: EdgeInsets.all(10),
                           // margin: EdgeInsets.only(left: 30, right: 30),
@@ -262,7 +278,47 @@ class _AddpageState extends State<Addpage> {
                       top: 20,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "D O B",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * .63,
+                          height: 50,
+                          padding: EdgeInsets.all(10),
+                          // margin: EdgeInsets.only(left: 30, right: 30),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: const Color.fromARGB(255, 247, 174, 174),
+                          ),
+                          child: TextField(
+                            controller: c5,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Date of Birth",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      top: 20,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "Blood Group",
@@ -275,16 +331,16 @@ class _AddpageState extends State<Addpage> {
                           width: 20,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * .22,
+                          width: MediaQuery.of(context).size.width * .63,
                           height: 50,
-                          padding: EdgeInsets.only(left: 8),
+                          padding: EdgeInsets.only(left: 8, right: 5),
                           // margin: EdgeInsets.only(left: 30, right: 30),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                             color: const Color.fromARGB(255, 247, 174, 174),
                           ),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(_selectedblood == null
                                   ? "Select a Blood Group"
