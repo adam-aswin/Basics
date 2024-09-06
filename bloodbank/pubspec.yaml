@@ -63,6 +63,7 @@ flutter:
   assets:
     - images/blood.jpg
     - images/add.webp
+    - images/request.webp
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
