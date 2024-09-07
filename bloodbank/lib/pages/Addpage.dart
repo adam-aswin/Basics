@@ -10,6 +10,7 @@ class Addpage extends StatefulWidget {
 class _AddpageState extends State<Addpage> {
   TextEditingController c5 = TextEditingController();
   String? _selectedblood;
+  String? _isSelected;
   final List<String> bloodgroup = [
     "A-",
     "A+",
@@ -30,6 +31,14 @@ class _AddpageState extends State<Addpage> {
               return AlertDialog(
                 backgroundColor: const Color.fromARGB(255, 247, 230, 230),
                 title: Text("Incorrect Date"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Ok"),
+                  ),
+                ],
               );
             });
     c5.clear();
@@ -304,7 +313,7 @@ class _AddpageState extends State<Addpage> {
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: "Date of Birth",
+                              hintText: "dd mm yyyy",
                             ),
                           ),
                         ),
@@ -373,6 +382,59 @@ class _AddpageState extends State<Addpage> {
                       ],
                     ),
                   ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      top: 20,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Gender",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        Expanded(
+                            flex: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text("Male"),
+                                Radio(
+                                    value: "Male",
+                                    groupValue: _isSelected,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        _isSelected = value;
+                                      });
+                                    }),
+                                Text("Female"),
+                                Radio(
+                                    value: "Female",
+                                    groupValue: _isSelected,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        _isSelected = value;
+                                      });
+                                    }),
+                                Text("Others"),
+                                Radio(
+                                    value: "Others",
+                                    groupValue: _isSelected,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        _isSelected = value;
+                                      });
+                                    })
+                              ],
+                            ))
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
