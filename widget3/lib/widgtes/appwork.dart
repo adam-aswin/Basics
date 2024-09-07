@@ -93,7 +93,7 @@ class AppWork extends StatelessWidget {
       ),
       // ========================================================================
       // ========================================================================
-      
+
       body: Container(
         color: Colors.grey[850],
         child: Container(
@@ -107,20 +107,20 @@ class AppWork extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
               color: const Color.fromARGB(255, 227, 231, 243)),
-      // ========================================================================
-      // ========================================================================
-      
+          // ========================================================================
+          // ========================================================================
+
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
-      // ========================================================================
-      // ========================================================================
+              // ========================================================================
+              // ========================================================================
 
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-      // ========================================================================
+                    // ========================================================================
 
                     Container(
                       margin: EdgeInsets.only(top: 20),
@@ -180,14 +180,14 @@ class AppWork extends StatelessWidget {
                         ],
                       ),
                     ),
-      // ========================================================================
+                    // ========================================================================
                     Spacer(),
-      // ========================================================================
+                    // ========================================================================
                     Container(
                       width: MediaQuery.of(context).size.width * .43,
                       height: 250,
                       margin: EdgeInsets.only(top: 20),
-                      padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white,
@@ -238,17 +238,17 @@ class AppWork extends StatelessWidget {
                         ],
                       ),
                     )
-      // ========================================================================
+                    // ========================================================================
                   ],
                 ),
               ),
-      // ========================================================================
-      // ========================================================================
+              // ========================================================================
+              // ========================================================================
               SizedBox(
                 height: 20,
               ),
-      // ========================================================================
-      // ========================================================================
+              // ========================================================================
+              // ========================================================================
 
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -275,14 +275,14 @@ class AppWork extends StatelessWidget {
                   ],
                 ),
               ),
-      // ========================================================================
-      // ========================================================================
+              // ========================================================================
+              // ========================================================================
 
               SizedBox(
                 height: 20,
               ),
-      // ========================================================================
-      // ========================================================================
+              // ========================================================================
+              // ========================================================================
 
               Container(
                 height: 170,
@@ -308,7 +308,7 @@ class AppWork extends StatelessWidget {
                       height: 10,
                     ),
                     Container(
-                      padding: EdgeInsets.only(left: 10,right: 10),
+                      padding: EdgeInsets.only(left: 10, right: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -321,8 +321,8 @@ class AppWork extends StatelessWidget {
                                   height: 50,
                                   width: 50,
                                   decoration: BoxDecoration(
-                                    color:
-                                        const Color.fromARGB(255, 227, 231, 243),
+                                    color: const Color.fromARGB(
+                                        255, 227, 231, 243),
                                     borderRadius: BorderRadius.circular(100),
                                   ),
                                   child: Icon(Icons.router_rounded),
@@ -348,8 +348,8 @@ class AppWork extends StatelessWidget {
                                   height: 50,
                                   width: 50,
                                   decoration: BoxDecoration(
-                                    color:
-                                        const Color.fromARGB(255, 227, 231, 243),
+                                    color: const Color.fromARGB(
+                                        255, 227, 231, 243),
                                     borderRadius: BorderRadius.circular(100),
                                   ),
                                   child: Icon(Icons.sim_card_rounded),
@@ -381,8 +381,8 @@ class AppWork extends StatelessWidget {
                                   height: 50,
                                   width: 50,
                                   decoration: BoxDecoration(
-                                    color:
-                                        const Color.fromARGB(255, 227, 231, 243),
+                                    color: const Color.fromARGB(
+                                        255, 227, 231, 243),
                                     borderRadius: BorderRadius.circular(100),
                                   ),
                                   child: Icon(Icons.settings_input_antenna),
@@ -407,8 +407,8 @@ class AppWork extends StatelessWidget {
                                   height: 50,
                                   width: 50,
                                   decoration: BoxDecoration(
-                                    color:
-                                        const Color.fromARGB(255, 227, 231, 243),
+                                    color: const Color.fromARGB(
+                                        255, 227, 231, 243),
                                     borderRadius: BorderRadius.circular(100),
                                   ),
                                   child: Icon(Icons.sim_card_download),
@@ -429,14 +429,14 @@ class AppWork extends StatelessWidget {
                   ],
                 ),
               ),
-      // ========================================================================
-      // ========================================================================
+              // ========================================================================
+              // ========================================================================
 
               SizedBox(
                 height: 20,
               ),
-      // ========================================================================
-      // ========================================================================
+              // ========================================================================
+              // ========================================================================
               Row(
                 children: [
                   Container(
@@ -530,32 +530,38 @@ class AppWork extends StatelessWidget {
                   ),
                 ],
               ),
-      // ========================================================================
-      // ========================================================================
-              SizedBox(height: 20,),
-      // ========================================================================
-      // ========================================================================
+              // ========================================================================
+              // ========================================================================
+              SizedBox(
+                height: 20,
+              ),
+              // ========================================================================
+              // ========================================================================
 
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 250,
                 padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
                 ),
-                
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("SHORTCUTS",style: TextStyle(
-                    color: Colors.grey[600],
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
+                    Text(
+                      "SHORTCUTS",
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
                     ),
+                    SizedBox(
+                      height: 15,
                     ),
-                    SizedBox(height: 15,),
                     Container(
-                      padding: EdgeInsets.only(left: 10,right: 10),
+                      padding: EdgeInsets.only(left: 10, right: 10),
                       child: Row(
                         children: [
                           // ==========================================================================
@@ -564,8 +570,10 @@ class AppWork extends StatelessWidget {
                               Container(
                                 height: 50,
                                 width: 50,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                color: const Color.fromARGB(255, 227, 231, 243),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color:
+                                      const Color.fromARGB(255, 227, 231, 243),
                                 ),
                                 child: Center(
                                   child: Container(
@@ -575,29 +583,47 @@ class AppWork extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Text("recharge",style: TextStyle(fontSize: 12),),
-                              Text("",style: TextStyle(fontSize: 12),),
+                              Text(
+                                "recharge",
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              Text(
+                                "",
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
-                          ),SizedBox(width: 40,),
+                          ),
+                          SizedBox(
+                            width: 40,
+                          ),
                           // ==========================================================================
                           Column(
                             children: [
                               Container(
                                 height: 50,
                                 width: 50,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                color: const Color.fromARGB(255, 227, 231, 243),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color:
+                                      const Color.fromARGB(255, 227, 231, 243),
                                 ),
                                 child: Center(
                                   child: Container(
                                     width: 25,
                                     height: 25,
-                                    child: Image.asset("./lib/icons/invoice.png"),
+                                    child:
+                                        Image.asset("./lib/icons/invoice.png"),
                                   ),
                                 ),
                               ),
-                              Text("pay bills",style: TextStyle(fontSize: 12),),
-                              Text("",style: TextStyle(fontSize: 12),),
+                              Text(
+                                "pay bills",
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              Text(
+                                "",
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
                           ),
                           Spacer(),
@@ -607,52 +633,70 @@ class AppWork extends StatelessWidget {
                               Container(
                                 height: 50,
                                 width: 50,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                color: const Color.fromARGB(255, 227, 231, 243),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color:
+                                      const Color.fromARGB(255, 227, 231, 243),
                                 ),
                                 child: Center(
                                   child: Container(
                                     width: 25,
                                     height: 25,
-                                    child: Image.asset("./lib/icons/guaranteed.png"),
+                                    child: Image.asset(
+                                        "./lib/icons/guaranteed.png"),
                                   ),
                                 ),
                               ),
-                              Text("claim OTTs &",style: TextStyle(fontSize: 12),),
-                              Text("more",style: TextStyle(fontSize: 12),),
-                      
+                              Text(
+                                "claim OTTs &",
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              Text(
+                                "more",
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
-                          ),Spacer(),
+                          ),
+                          Spacer(),
                           // ==========================================================================
                           Column(
                             children: [
                               Container(
                                 height: 50,
                                 width: 50,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                color: const Color.fromARGB(255, 227, 231, 243),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color:
+                                      const Color.fromARGB(255, 227, 231, 243),
                                 ),
                                 child: Center(
                                   child: Container(
                                     width: 25,
                                     height: 25,
-                                    child: Image.asset("./lib/icons/communication.png"),
+                                    child: Image.asset(
+                                        "./lib/icons/communication.png"),
                                   ),
                                 ),
                               ),
-                              Text("international",style: TextStyle(fontSize: 12),),
-                              Text("roaming",style: TextStyle(fontSize: 12),),
-                      
+                              Text(
+                                "international",
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              Text(
+                                "roaming",
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
                           ),
                           // ===========================================================================
-                      
                         ],
                       ),
                     ),
                     // ==========================================================
                     // ==========================================================
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       // padding: EdgeInsets.only(left: 5,right: 5),
                       child: Row(
@@ -663,36 +707,21 @@ class AppWork extends StatelessWidget {
                               Container(
                                 height: 50,
                                 width: 50,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                color: const Color.fromARGB(255, 227, 231, 243),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color:
+                                      const Color.fromARGB(255, 227, 231, 243),
                                 ),
                                 child: Icon(Icons.add_circle),
                               ),
-                              Text("add existing",style: TextStyle(fontSize: 12),),
-                              Text("connection",style: TextStyle(fontSize: 12),),
-                      
-                            ],
-                          ),Spacer(),
-                          // ==========================================================================
-                          Column(
-                            children: [
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                color: const Color.fromARGB(255, 227, 231, 243),
-                                ),
-                                child: Center(
-                                  child: Container(
-                                    width: 25,
-                                    height: 25,
-                                    child: Image.asset("./lib/icons/file-upload.png"),
-                                  ),
-                                ),
+                              Text(
+                                "add existing",
+                                style: TextStyle(fontSize: 12),
                               ),
-                              Text("upgrade to",style: TextStyle(fontSize: 12),),
-                              Text("postpaid",style: TextStyle(fontSize: 12),),
-                      
+                              Text(
+                                "connection",
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
                           ),
                           Spacer(),
@@ -702,115 +731,163 @@ class AppWork extends StatelessWidget {
                               Container(
                                 height: 50,
                                 width: 50,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                color: const Color.fromARGB(255, 227, 231, 243),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color:
+                                      const Color.fromARGB(255, 227, 231, 243),
                                 ),
                                 child: Center(
                                   child: Container(
                                     width: 25,
                                     height: 25,
-                                    child: Image.asset("./lib/icons/gigabyte.png"),
+                                    child: Image.asset(
+                                        "./lib/icons/file-upload.png"),
                                   ),
                                 ),
                               ),
-                              Text("top up data",style: TextStyle(fontSize: 12),),
-                                Text("",style: TextStyle(fontSize: 12),),
+                              Text(
+                                "upgrade to",
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              Text(
+                                "postpaid",
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
-                          ),Spacer(),
+                          ),
+                          Spacer(),
                           // ==========================================================================
                           Column(
                             children: [
-                              Stack(
-                                clipBehavior: Clip.none,
-                                children:[ Container(
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color:
+                                      const Color.fromARGB(255, 227, 231, 243),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 25,
+                                    height: 25,
+                                    child:
+                                        Image.asset("./lib/icons/gigabyte.png"),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                "top up data",
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              Text(
+                                "",
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                          // ==========================================================================
+                          Column(
+                            children: [
+                              Stack(clipBehavior: Clip.none, children: [
+                                Container(
                                   height: 50,
                                   width: 50,
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                  color: const Color.fromARGB(255, 227, 231, 243),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    color: const Color.fromARGB(
+                                        255, 227, 231, 243),
                                   ),
                                   child: Icon(Icons.sim_card_outlined),
                                 ),
                                 Positioned(
-                                  top: -5,
-                                  left: 9.7,
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                  width: 30,
-                                  height: 15,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                  color: Colors.red,
-                                    ),
-                                    child: Text("NEW",style:TextStyle(color: Colors.white,fontSize: 10),),
-                                ))
-                                ]
+                                    top: -5,
+                                    left: 9.7,
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      width: 30,
+                                      height: 15,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Colors.red,
+                                      ),
+                                      child: Text(
+                                        "NEW",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 10),
+                                      ),
+                                    ))
+                              ]),
+                              Text(
+                                "upgrade to eSIM",
+                                style: TextStyle(fontSize: 12),
                               ),
-                              Text("upgrade to eSIM",style: TextStyle(fontSize: 12),),
-                                Text("",style: TextStyle(fontSize: 12),),
-                      
+                              Text(
+                                "",
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
                           ),
                           // ===========================================================================
-                      
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
-      // ========================================================================
-              SizedBox(height: 20,),
-      // ========================================================================
+              // ========================================================================
+              SizedBox(
+                height: 20,
+              ),
+              // ========================================================================
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 275,
-                padding: EdgeInsets.only(left: 20,bottom: 10,right: 20, top: 10),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
+                padding:
+                    EdgeInsets.only(left: 20, bottom: 10, right: 20, top: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
                 ),
-                
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("BUY NEW SERVICES",style: TextStyle(
-                    color: Colors.grey[600],
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
+                    Text(
+                      "BUY NEW SERVICES",
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
                     ),
+                    SizedBox(
+                      height: 15,
                     ),
-                    SizedBox(height: 15,),
                     Container(
-                      padding: EdgeInsets.only(left: 10,right: 10),
+                      padding: EdgeInsets.only(left: 10, right: 10),
                       child: Row(
                         children: [
                           // ==========================================================================
                           Column(
                             children: [
                               Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                color: const Color.fromARGB(255, 227, 231, 243),
-                                ),
-                                child:Icon(Icons.router)
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    color: const Color.fromARGB(
+                                        255, 227, 231, 243),
+                                  ),
+                                  child: Icon(Icons.router)),
+                              Text(
+                                "Wi-Fi",
+                                style: TextStyle(fontSize: 12),
                               ),
-                              Text("Wi-Fi",style: TextStyle(fontSize: 12),),
-                              Text("",style: TextStyle(fontSize: 12),),
-                            ],
-                          ),Spacer(),
-                          // ==========================================================================
-                          Column(
-                            children: [
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                color: const Color.fromARGB(255, 227, 231, 243),
-                                ),
-                                child: Icon(Icons.sim_card)
+                              Text(
+                                "",
+                                style: TextStyle(fontSize: 12),
                               ),
-                              Text("upgrade to",style: TextStyle(fontSize: 12),),
-                              Text("postpaid",style: TextStyle(fontSize: 12),),
                             ],
                           ),
                           Spacer(),
@@ -818,48 +895,85 @@ class AppWork extends StatelessWidget {
                           Column(
                             children: [
                               Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                color: const Color.fromARGB(255, 227, 231, 243),
-                                ),
-                                child: Icon(Icons.settings_input_antenna)
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    color: const Color.fromARGB(
+                                        255, 227, 231, 243),
+                                  ),
+                                  child: Icon(Icons.sim_card)),
+                              Text(
+                                "upgrade to",
+                                style: TextStyle(fontSize: 12),
                               ),
-                              Text("new dth",style: TextStyle(fontSize: 12),),
-                              Text("",style: TextStyle(fontSize: 12),),
-                      
+                              Text(
+                                "postpaid",
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
-                          ),Spacer(),
+                          ),
+                          Spacer(),
                           // ==========================================================================
                           Column(
                             children: [
                               Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                color: const Color.fromARGB(255, 227, 231, 243),
-                                ),
-                                child: Icon(Icons.sim_card_download)
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    color: const Color.fromARGB(
+                                        255, 227, 231, 243),
+                                  ),
+                                  child: Icon(Icons.settings_input_antenna)),
+                              Text(
+                                "new dth",
+                                style: TextStyle(fontSize: 12),
                               ),
-                              Text("new prepaid ",style: TextStyle(fontSize: 12),),
-                              Text("SIM",style: TextStyle(fontSize: 12),),
-                      
+                              Text(
+                                "",
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                          // ==========================================================================
+                          Column(
+                            children: [
+                              Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    color: const Color.fromARGB(
+                                        255, 227, 231, 243),
+                                  ),
+                                  child: Icon(Icons.sim_card_download)),
+                              Text(
+                                "new prepaid ",
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              Text(
+                                "SIM",
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
                           ),
                           // ===========================================================================
-                      
                         ],
                       ),
                     ),
-                    SizedBox(height: 12,),
+                    SizedBox(
+                      height: 12,
+                    ),
                     // ==========================================================
                     Container(
                       width: MediaQuery.of(context).size.width,
                       height: 25,
-                      margin: EdgeInsets.only(left: 10,right: 10),
+                      margin: EdgeInsets.only(left: 10, right: 10),
                       decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.red,
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.red,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -867,19 +981,26 @@ class AppWork extends StatelessWidget {
                           Icon(
                             Icons.card_giftcard_rounded,
                             color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "GB | No daily limit | Get Postpaid",
+                            style: TextStyle(
+                              color: Colors.white,
                             ),
-                            SizedBox(width: 5,),
-                            Text("GB | No daily limit | Get Postpaid",
-                            style: TextStyle(color: Colors.white,),)
+                          )
                         ],
                       ),
                     ),
                     // ==========================================================
-                    SizedBox(height: 15,),
+                    SizedBox(
+                      height: 15,
+                    ),
                     Container(
                       margin: EdgeInsets.only(right: 88),
                       padding: EdgeInsets.only(left: 4),
-
                       child: Row(
                         children: [
                           // ==========================================================================
@@ -888,53 +1009,73 @@ class AppWork extends StatelessWidget {
                               Container(
                                 height: 50,
                                 width: 50,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                color: const Color.fromARGB(255, 227, 231, 243),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color:
+                                      const Color.fromARGB(255, 227, 231, 243),
                                 ),
                                 child: Icon(Icons.account_balance),
                               ),
-                              Text("Open Bank",style: TextStyle(fontSize: 12),),
-                              Text("Account",style: TextStyle(fontSize: 12),),
-                      
+                              Text(
+                                "Open Bank",
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              Text(
+                                "Account",
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
-                          ),SizedBox(width: 25,),
+                          ),
+                          SizedBox(
+                            width: 25,
+                          ),
                           // ==========================================================================
                           Column(
                             children: [
-                              Stack(
-                                clipBehavior: Clip.none,
-                                children: [Container(
+                              Stack(clipBehavior: Clip.none, children: [
+                                Container(
                                   height: 50,
                                   width: 50,
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                  color: const Color.fromARGB(255, 227, 231, 243),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    color: const Color.fromARGB(
+                                        255, 227, 231, 243),
                                   ),
                                   child: Center(
                                     child: Container(
                                       width: 25,
                                       height: 25,
-                                      child: Image.asset("./lib/icons/file-upload.png"),
+                                      child: Image.asset(
+                                          "./lib/icons/file-upload.png"),
                                     ),
                                   ),
                                 ),
-                                 Positioned(
-                                  top: -5,
-                                  left: 9.7,
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                  width: 30,
-                                  height: 15,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                  color: Colors.red,
-                                    ),
-                                    child: Text("NEW",style:TextStyle(color: Colors.white,fontSize: 10),),
-                                )),
-                                ]
+                                Positioned(
+                                    top: -5,
+                                    left: 9.7,
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      width: 30,
+                                      height: 15,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Colors.red,
+                                      ),
+                                      child: Text(
+                                        "NEW",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 10),
+                                      ),
+                                    )),
+                              ]),
+                              Text(
+                                "Wi-Fi Camera",
+                                style: TextStyle(fontSize: 12),
                               ),
-                              Text("Wi-Fi Camera",style: TextStyle(fontSize: 12),),
-                              Text("",style: TextStyle(fontSize: 12),),
-                      
+                              Text(
+                                "",
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
                           ),
                           Spacer(),
@@ -944,31 +1085,41 @@ class AppWork extends StatelessWidget {
                               Container(
                                 height: 50,
                                 width: 50,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
-                                color: const Color.fromARGB(255, 227, 231, 243),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color:
+                                      const Color.fromARGB(255, 227, 231, 243),
                                 ),
                                 child: Center(
                                   child: Container(
                                     width: 25,
                                     height: 25,
-                                    child: Image.asset("./lib/icons/gigabyte.png"),
+                                    child:
+                                        Image.asset("./lib/icons/gigabyte.png"),
                                   ),
                                 ),
                               ),
-                              Text("airtel back",style: TextStyle(fontSize: 12),),
-                                Text("",style: TextStyle(fontSize: 12),),
+                              Text(
+                                "airtel back",
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              Text(
+                                "",
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
-                          ),Spacer(),
+                          ),
+                          Spacer(),
                           // ==========================================================================
-                          
-                          
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),

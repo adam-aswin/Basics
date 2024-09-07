@@ -8,7 +8,12 @@ class Addpage extends StatefulWidget {
 }
 
 class _AddpageState extends State<Addpage> {
+  TextEditingController c1 = TextEditingController();
+  TextEditingController c2 = TextEditingController();
+  TextEditingController c3 = TextEditingController();
+  TextEditingController c4 = TextEditingController();
   TextEditingController c5 = TextEditingController();
+  TextEditingController c6 = TextEditingController();
   String? _selectedblood;
   String? _isSelected;
   final List<String> bloodgroup = [
@@ -42,6 +47,7 @@ class _AddpageState extends State<Addpage> {
               );
             });
     c5.clear();
+    print(_isSelected);
   }
 
   @override
@@ -154,6 +160,7 @@ class _AddpageState extends State<Addpage> {
                             color: const Color.fromARGB(255, 247, 174, 174),
                           ),
                           child: TextField(
+                            controller: c1,
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Name",
@@ -192,6 +199,7 @@ class _AddpageState extends State<Addpage> {
                             color: const Color.fromARGB(255, 247, 174, 174),
                           ),
                           child: TextField(
+                            controller: c2,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -231,6 +239,7 @@ class _AddpageState extends State<Addpage> {
                             color: const Color.fromARGB(255, 247, 174, 174),
                           ),
                           child: TextField(
+                            controller: c3,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -251,7 +260,7 @@ class _AddpageState extends State<Addpage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Number",
+                          "Phone",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -270,6 +279,7 @@ class _AddpageState extends State<Addpage> {
                             color: const Color.fromARGB(255, 247, 174, 174),
                           ),
                           child: TextField(
+                            controller: c4,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -434,7 +444,47 @@ class _AddpageState extends State<Addpage> {
                             ))
                       ],
                     ),
-                  )
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      top: 20,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Weight",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * .63,
+                          height: 50,
+                          padding: EdgeInsets.all(10),
+                          // margin: EdgeInsets.only(left: 30, right: 30),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: const Color.fromARGB(255, 247, 174, 174),
+                          ),
+                          child: TextField(
+                            controller: c6,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Weight(kg)",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
