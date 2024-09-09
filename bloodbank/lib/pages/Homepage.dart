@@ -1,4 +1,4 @@
-import 'package:bloodbank/pages/Addpage.dart';
+import 'package:bloodbank/pages/displaypage.dart';
 import 'package:bloodbank/pages/homescreen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   int page = 0;
-  final List<Widget> screens = [Homescreen(), Addpage()];
+  final List<Widget> screens = [Homescreen(), Displaypage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

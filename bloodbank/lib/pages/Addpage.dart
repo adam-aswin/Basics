@@ -1,4 +1,10 @@
+import 'dart:convert';
+import 'dart:io';
+// import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Addpage extends StatefulWidget {
   const Addpage({super.key});
@@ -16,6 +22,11 @@ class _AddpageState extends State<Addpage> {
   TextEditingController c6 = TextEditingController();
   String? _selectedblood;
   String? _isSelected;
+  bool _isChecked = false;
+  File? _image;
+  List<dynamic> cnt = [];
+  String? base;
+  final ImagePicker _picker = ImagePicker();
   final List<String> bloodgroup = [
     "A-",
     "A+",
@@ -26,16 +37,114 @@ class _AddpageState extends State<Addpage> {
     "B+",
     "B-",
   ];
-  void dob() {
-    RegExp reg = RegExp(r'([0-2]\d||3[0-1])-(0\d||1[0-2])-(\d{4})$');
-    reg.hasMatch(c5.text)
-        ? Navigator.pushNamed(context, "/home1")
-        : showDialog(
+  void gallery() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print("null");
+      }
+    });
+  }
+
+  void camera() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+        Navigator.pop(context);
+      } else {
+        print("null");
+      }
+    });
+  }
+
+  void pickimage() async {
+    if (_image == null) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: const Color.fromARGB(255, 247, 230, 230),
+              title: Text(
+                "Choose a File",
+                style: TextStyle(color: Colors.white),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: gallery,
+                  child: Text(
+                    "Gallery",
+                    style: TextStyle(color: Colors.blueAccent[700]),
+                  ),
+                ),
+                TextButton(
+                  onPressed: camera,
+                  child: Text(
+                    "Camera",
+                    style: TextStyle(color: Colors.blueAccent[700]),
+                  ),
+                ),
+              ],
+            );
+          });
+    } else {
+      print("null");
+    }
+  }
+
+  void saveData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final res = prefs.getString("blood");
+    if (_image != null) {
+      final bytes = await _image!.readAsBytes();
+      final base64img = base64Encode(bytes);
+      base = base64img;
+    }
+    try {
+      cnt = jsonDecode(res!);
+      cnt.add({
+        "name": c1.text,
+        "age": c2.text,
+        "email": c3.text,
+        "phone": c4.text,
+        "dob": c5.text,
+        "blood": _selectedblood,
+        "gender": _isSelected,
+        "weight": c6.text,
+        "photo": base,
+      });
+      prefs.setString("blood", jsonEncode(cnt));
+    } catch (error) {
+      cnt = [
+        {
+          "name": c1.text,
+          "age": c2.text,
+          "email": c3.text,
+          "phone": c4.text,
+          "dob": c5.text,
+          "blood": _selectedblood,
+          "gender": _isSelected,
+          "weight": c6.text,
+          "photo": base,
+        }
+      ];
+      prefs.setString("blood", jsonEncode(cnt));
+    }
+    print(cnt);
+    Navigator.pushNamedAndRemoveUntil(context, "/home1", (route) => false);
+  }
+
+  void dob() async {
+    RegExp reg = RegExp(r'(\d{4})-(0\d||1[0-2])-([0-2]\d||3[0-1])$');
+    _isChecked == false
+        ? showDialog(
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
                 backgroundColor: const Color.fromARGB(255, 247, 230, 230),
-                title: Text("Incorrect Date"),
+                title: Text("Please agree to be a donor to Continue"),
                 actions: [
                   TextButton(
                     onPressed: () {
@@ -45,9 +154,28 @@ class _AddpageState extends State<Addpage> {
                   ),
                 ],
               );
-            });
+            })
+        : reg.hasMatch(c5.text) == false
+            ? showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    backgroundColor: const Color.fromARGB(255, 247, 230, 230),
+                    title: Text("Incorrect Date"),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text("Ok"),
+                      ),
+                    ],
+                  );
+                })
+            : saveData();
+
     c5.clear();
-    print(_isSelected);
+    // print(_isChecked);
   }
 
   @override
@@ -93,8 +221,10 @@ class _AddpageState extends State<Addpage> {
                   ),
                 ),
                 Positioned(
-                    bottom: -50,
-                    left: 150,
+                  bottom: -50,
+                  left: 150,
+                  child: GestureDetector(
+                    onTap: pickimage,
                     child: Container(
                       width: 120,
                       height: 120,
@@ -102,25 +232,42 @@ class _AddpageState extends State<Addpage> {
                         borderRadius: BorderRadius.circular(100),
                         color: Colors.white,
                       ),
-                      child: Icon(
-                        Icons.person,
-                        size: 100,
+                      child: ClipOval(
+                        child: _image != null
+                            ? Image.file(
+                                _image!,
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              )
+                            : Container(
+                                padding: EdgeInsets.all(25),
+                                child: Image.asset(
+                                  "./lib/icons/user.png",
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                       ),
-                    )),
+                    ),
+                  ),
+                ),
                 Positioned(
                     bottom: -41,
                     right: 145,
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.white,
-                      ),
-                      child: Icon(
-                        Icons.camera_alt,
-                        color: const Color.fromARGB(255, 168, 12, 0),
-                        size: 20,
+                    child: GestureDetector(
+                      onTap: pickimage,
+                      child: Container(
+                        width: 30,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.white,
+                        ),
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: const Color.fromARGB(255, 168, 12, 0),
+                          size: 20,
+                        ),
                       ),
                     ))
               ],
@@ -323,7 +470,7 @@ class _AddpageState extends State<Addpage> {
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: "dd mm yyyy",
+                              hintText: "yyyy mm dd",
                             ),
                           ),
                         ),
@@ -482,6 +629,27 @@ class _AddpageState extends State<Addpage> {
                             ),
                           ),
                         ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      top: 20,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Checkbox(
+                            activeColor: Colors.red,
+                            value: _isChecked,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                _isChecked = value!;
+                              });
+                            }),
+                        Text("I agree to be a donor"),
                       ],
                     ),
                   ),
