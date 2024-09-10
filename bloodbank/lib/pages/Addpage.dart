@@ -20,6 +20,7 @@ class _AddpageState extends State<Addpage> {
   TextEditingController c4 = TextEditingController();
   TextEditingController c5 = TextEditingController();
   TextEditingController c6 = TextEditingController();
+  TextEditingController c7 = TextEditingController();
   String? _selectedblood;
   String? _isSelected;
   bool _isChecked = false;
@@ -69,7 +70,7 @@ class _AddpageState extends State<Addpage> {
               backgroundColor: const Color.fromARGB(255, 247, 230, 230),
               title: Text(
                 "Choose a File",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
               ),
               actions: [
                 TextButton(
@@ -113,6 +114,7 @@ class _AddpageState extends State<Addpage> {
         "blood": _selectedblood,
         "gender": _isSelected,
         "weight": c6.text,
+        "location": c7.text,
         "photo": base,
       });
       prefs.setString("blood", jsonEncode(cnt));
@@ -127,6 +129,7 @@ class _AddpageState extends State<Addpage> {
           "blood": _selectedblood,
           "gender": _isSelected,
           "weight": c6.text,
+          "location": c7.text,
           "photo": base,
         }
       ];
@@ -136,7 +139,7 @@ class _AddpageState extends State<Addpage> {
     Navigator.pushNamedAndRemoveUntil(context, "/home1", (route) => false);
   }
 
-  void dob() async {
+  void dob() {
     RegExp reg = RegExp(r'(\d{4})-(0\d||1[0-2])-([0-2]\d||3[0-1])$');
     _isChecked == false
         ? showDialog(
@@ -203,460 +206,507 @@ class _AddpageState extends State<Addpage> {
                 ))
           ],
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.vertical(
-                      bottom: Radius.elliptical(
-                          MediaQuery.of(context).size.width, 120),
-                    ),
-                    color: const Color.fromARGB(255, 168, 12, 0),
-                  ),
-                ),
-                Positioned(
-                  bottom: -50,
-                  left: 150,
-                  child: GestureDetector(
-                    onTap: pickimage,
-                    child: Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.white,
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.vertical(
+                        bottom: Radius.elliptical(
+                            MediaQuery.of(context).size.width, 120),
                       ),
-                      child: ClipOval(
-                        child: _image != null
-                            ? Image.file(
-                                _image!,
-                                width: 100,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              )
-                            : Container(
-                                padding: EdgeInsets.all(25),
-                                child: Image.asset(
-                                  "./lib/icons/user.png",
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                      ),
+                      color: const Color.fromARGB(255, 168, 12, 0),
                     ),
                   ),
-                ),
-                Positioned(
-                    bottom: -41,
-                    right: 145,
+                  Positioned(
+                    bottom: -50,
+                    left: 150,
                     child: GestureDetector(
                       onTap: pickimage,
                       child: Container(
-                        width: 30,
-                        height: 30,
+                        width: 120,
+                        height: 120,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: Colors.white,
                         ),
-                        child: Icon(
-                          Icons.camera_alt,
-                          color: const Color.fromARGB(255, 168, 12, 0),
-                          size: 20,
+                        child: ClipOval(
+                          child: _image != null
+                              ? Image.file(
+                                  _image!,
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.cover,
+                                )
+                              : Container(
+                                  padding: EdgeInsets.all(25),
+                                  child: Image.asset(
+                                    "./lib/icons/user.png",
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                         ),
                       ),
-                    ))
-              ],
-            ),
-            SizedBox(
-              height: 90,
-            ),
-            Expanded(
-              child: ListView(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                      top: 20,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Name",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * .63,
-                          height: 50,
-                          padding: EdgeInsets.all(10),
-                          // margin: EdgeInsets.only(left: 30, right: 30),
+                  ),
+                  Positioned(
+                      bottom: -41,
+                      right: 145,
+                      child: GestureDetector(
+                        onTap: pickimage,
+                        child: Container(
+                          width: 30,
+                          height: 30,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(255, 247, 174, 174),
+                            borderRadius: BorderRadius.circular(100),
+                            color: Colors.white,
                           ),
-                          child: TextField(
-                            controller: c1,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Name",
-                            ),
+                          child: Icon(
+                            Icons.camera_alt,
+                            color: const Color.fromARGB(255, 168, 12, 0),
+                            size: 20,
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                      top: 20,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Age",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * .63,
-                          height: 50,
-                          padding: EdgeInsets.all(10),
-                          // margin: EdgeInsets.only(left: 30, right: 30),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(255, 247, 174, 174),
-                          ),
-                          child: TextField(
-                            controller: c2,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Age",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                      top: 20,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Email",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * .63,
-                          height: 50,
-                          padding: EdgeInsets.all(10),
-                          // margin: EdgeInsets.only(left: 30, right: 30),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(255, 247, 174, 174),
-                          ),
-                          child: TextField(
-                            controller: c3,
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Email",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                      top: 20,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Phone",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * .63,
-                          height: 50,
-                          padding: EdgeInsets.all(10),
-                          // margin: EdgeInsets.only(left: 30, right: 30),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(255, 247, 174, 174),
-                          ),
-                          child: TextField(
-                            controller: c4,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Mobile Number",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                      top: 20,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "D O B",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * .63,
-                          height: 50,
-                          padding: EdgeInsets.all(10),
-                          // margin: EdgeInsets.only(left: 30, right: 30),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(255, 247, 174, 174),
-                          ),
-                          child: TextField(
-                            controller: c5,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "yyyy mm dd",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                      top: 20,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Blood Group",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * .63,
-                          height: 50,
-                          padding: EdgeInsets.only(left: 8, right: 5),
-                          // margin: EdgeInsets.only(left: 30, right: 30),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(255, 247, 174, 174),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(_selectedblood == null
-                                  ? "Select a Blood Group"
-                                  : "$_selectedblood"),
-                              DropdownButton(
-                                icon:
-                                    Icon(Icons.arrow_drop_down_circle_outlined),
-                                dropdownColor:
-                                    const Color.fromARGB(255, 247, 230, 230),
-                                underline: Container(
-                                  height: 0,
-                                ),
-                                items: bloodgroup.map(
-                                  (String blood) {
-                                    return DropdownMenuItem(
-                                      value: blood,
-                                      child: Text(blood),
-                                    );
-                                  },
-                                ).toList(),
-                                onChanged: (value) {
-                                  setState(() {
-                                    _selectedblood = value;
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                      top: 20,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Gender",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        Expanded(
-                            flex: 0,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("Male"),
-                                Radio(
-                                    value: "Male",
-                                    groupValue: _isSelected,
-                                    onChanged: (String? value) {
-                                      setState(() {
-                                        _isSelected = value;
-                                      });
-                                    }),
-                                Text("Female"),
-                                Radio(
-                                    value: "Female",
-                                    groupValue: _isSelected,
-                                    onChanged: (String? value) {
-                                      setState(() {
-                                        _isSelected = value;
-                                      });
-                                    }),
-                                Text("Others"),
-                                Radio(
-                                    value: "Others",
-                                    groupValue: _isSelected,
-                                    onChanged: (String? value) {
-                                      setState(() {
-                                        _isSelected = value;
-                                      });
-                                    })
-                              ],
-                            ))
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                      top: 20,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Weight",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * .63,
-                          height: 50,
-                          padding: EdgeInsets.all(10),
-                          // margin: EdgeInsets.only(left: 30, right: 30),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(255, 247, 174, 174),
-                          ),
-                          child: TextField(
-                            controller: c6,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Weight(kg)",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                      top: 20,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Checkbox(
-                            activeColor: Colors.red,
-                            value: _isChecked,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                _isChecked = value!;
-                              });
-                            }),
-                        Text("I agree to be a donor"),
-                      ],
-                    ),
-                  ),
+                      ))
                 ],
               ),
-            ),
-          ],
+              SizedBox(
+                height: 90,
+              ),
+              Expanded(
+                child: ListView(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        top: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Name",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * .63,
+                            height: 50,
+                            padding: EdgeInsets.all(10),
+                            // margin: EdgeInsets.only(left: 30, right: 30),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: const Color.fromARGB(255, 247, 174, 174),
+                            ),
+                            child: TextField(
+                              controller: c1,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Name",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        top: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Age",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * .63,
+                            height: 50,
+                            padding: EdgeInsets.all(10),
+                            // margin: EdgeInsets.only(left: 30, right: 30),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: const Color.fromARGB(255, 247, 174, 174),
+                            ),
+                            child: TextField(
+                              controller: c2,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Age",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        top: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Email",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * .63,
+                            height: 50,
+                            padding: EdgeInsets.all(10),
+                            // margin: EdgeInsets.only(left: 30, right: 30),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: const Color.fromARGB(255, 247, 174, 174),
+                            ),
+                            child: TextField(
+                              controller: c3,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Email",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        top: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Phone",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * .63,
+                            height: 50,
+                            padding: EdgeInsets.all(10),
+                            // margin: EdgeInsets.only(left: 30, right: 30),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: const Color.fromARGB(255, 247, 174, 174),
+                            ),
+                            child: TextField(
+                              controller: c4,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Mobile Number",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        top: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "D O B",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * .63,
+                            height: 50,
+                            padding: EdgeInsets.all(10),
+                            // margin: EdgeInsets.only(left: 30, right: 30),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: const Color.fromARGB(255, 247, 174, 174),
+                            ),
+                            child: TextField(
+                              controller: c5,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "yyyy mm dd",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        top: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Blood Group",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * .63,
+                            height: 50,
+                            padding: EdgeInsets.only(left: 8, right: 5),
+                            // margin: EdgeInsets.only(left: 30, right: 30),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: const Color.fromARGB(255, 247, 174, 174),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(_selectedblood == null
+                                    ? "Select a Blood Group"
+                                    : "$_selectedblood"),
+                                DropdownButton(
+                                  icon: Icon(
+                                      Icons.arrow_drop_down_circle_outlined),
+                                  dropdownColor:
+                                      const Color.fromARGB(255, 247, 230, 230),
+                                  underline: Container(
+                                    height: 0,
+                                  ),
+                                  items: bloodgroup.map(
+                                    (String blood) {
+                                      return DropdownMenuItem(
+                                        value: blood,
+                                        child: Text(blood),
+                                      );
+                                    },
+                                  ).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _selectedblood = value;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        top: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Gender",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          Expanded(
+                              flex: 0,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text("Male"),
+                                  Radio(
+                                      value: "Male",
+                                      groupValue: _isSelected,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          _isSelected = value;
+                                        });
+                                      }),
+                                  Text("Female"),
+                                  Radio(
+                                      value: "Female",
+                                      groupValue: _isSelected,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          _isSelected = value;
+                                        });
+                                      }),
+                                  Text("Others"),
+                                  Radio(
+                                      value: "Others",
+                                      groupValue: _isSelected,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          _isSelected = value;
+                                        });
+                                      })
+                                ],
+                              ))
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        top: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Weight",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * .63,
+                            height: 50,
+                            padding: EdgeInsets.all(10),
+                            // margin: EdgeInsets.only(left: 30, right: 30),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: const Color.fromARGB(255, 247, 174, 174),
+                            ),
+                            child: TextField(
+                              controller: c6,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Weight(kg)",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        top: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Location",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * .63,
+                            height: 50,
+                            padding: EdgeInsets.all(10),
+                            // margin: EdgeInsets.only(left: 30, right: 30),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: const Color.fromARGB(255, 247, 174, 174),
+                            ),
+                            child: TextField(
+                              controller: c7,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Location",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      // height: 150,
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        top: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Checkbox(
+                              activeColor: Colors.red,
+                              value: _isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  _isChecked = value!;
+                                });
+                              }),
+                          Text(
+                            "I agree to be a donor, and Donor blood is tested \nfor infectious diseases (TTIs) such as HIV, \nHBs Ag, VDRL & HCV and blood group serology. \nThe screening of Transfusion Transmitted \nInfectious Marker (TTIs) is done by ELISA \nMethod.",
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ));
   }
 }

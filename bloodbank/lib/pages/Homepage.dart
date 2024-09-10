@@ -16,7 +16,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 247, 230, 230),
+      backgroundColor: Colors.white,
       bottomNavigationBar: CurvedNavigationBar(
         onTap: (value) {
           setState(() {
