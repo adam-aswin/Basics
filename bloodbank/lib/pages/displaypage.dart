@@ -14,6 +14,7 @@ class Displaypage extends StatefulWidget {
 class _DisplaypageState extends State<Displaypage> {
   String? _selectedblood;
   Uint8List? _image;
+
   final List<String> bloodgroup = [
     "A-",
     "A+",
@@ -25,12 +26,14 @@ class _DisplaypageState extends State<Displaypage> {
     "B-",
   ];
   List<dynamic> cnt = [];
+  List<dynamic> bloods = [];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     display();
+    blood();
   }
 
   void display() async {
@@ -43,7 +46,10 @@ class _DisplaypageState extends State<Displaypage> {
         print("eroor");
       }
     });
-    print(cnt);
+  }
+
+  void blood() {
+    print(bloods);
   }
 
   @override
@@ -92,6 +98,11 @@ class _DisplaypageState extends State<Displaypage> {
                         ),
                       ),
                       DropdownButton(
+                        onTap: () {
+                          setState(() {
+                            blood();
+                          });
+                        },
                         icon: Icon(
                           Icons.arrow_drop_down_circle_outlined,
                           color: Colors.white,
@@ -111,6 +122,15 @@ class _DisplaypageState extends State<Displaypage> {
                         onChanged: (value) {
                           setState(() {
                             _selectedblood = value;
+                            for (int index = 0; index < cnt.length; index++) {
+                              // print(index);
+                              // bloods.add(cnt[index]["blood"]);
+                              if (cnt[index]["blood"] == _selectedblood) {
+                                print(cnt[index]["blood"]);
+                              } else {
+                                print("hai");
+                              }
+                            }
                           });
                         },
                       ),
@@ -127,117 +147,132 @@ class _DisplaypageState extends State<Displaypage> {
                 child: ListView.builder(
                   itemCount: cnt.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      padding: EdgeInsets.all(15),
-                      margin: EdgeInsets.only(bottom: 10),
-                      width: MediaQuery.of(context).size.width,
-                      height: 110,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          8,
-                        ),
-                        color: const Color.fromARGB(255, 255, 231, 231),
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 80,
-                            width: 70,
+                    return cnt[index]["blood"] == _selectedblood
+                        ? Container(
+                            padding: EdgeInsets.all(15),
+                            margin: EdgeInsets.only(bottom: 10),
+                            width: MediaQuery.of(context).size.width,
+                            height: 110,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: const Color.fromARGB(255, 121, 120, 120),
+                              borderRadius: BorderRadius.circular(
+                                8,
+                              ),
+                              color: const Color.fromARGB(255, 255, 231, 231),
                             ),
-                            child: cnt[index]["photo"] != null
-                                ? Image.memory(
-                                    _image = base64Decode(cnt[index]["photo"]),
-                                    fit: BoxFit.cover,
-                                  )
-                                : Image.asset(
-                                    "./lib/icons/user.png",
-                                    fit: BoxFit.contain,
-                                  ),
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Container(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  cnt[index]["name"],
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
+                                Container(
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 80,
+                                        width: 70,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: const Color.fromARGB(
+                                              255, 121, 120, 120),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: cnt[index]["photo"] != null
+                                              ? Image.memory(
+                                                  _image = base64Decode(
+                                                      cnt[index]["photo"]),
+                                                  fit: BoxFit.cover,
+                                                )
+                                              : Image.asset(
+                                                  "./lib/icons/user.png",
+                                                  fit: BoxFit.contain,
+                                                ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      Container(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              cnt[index]["name"],
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18,
+                                              ),
+                                            ),
+                                            Text(cnt[index]["location"]),
+                                            Text(cnt[index]["phone"]),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                Text(cnt[index]["location"]),
-                                Text(cnt[index]["phone"]),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            width: 100,
-                          ),
-                          Container(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  cnt[index]["blood"],
-                                  style: TextStyle(
-                                    color:
-                                        const Color.fromARGB(255, 196, 14, 2),
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
+                                Container(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        cnt[index]["blood"],
+                                        style: TextStyle(
+                                          color: const Color.fromARGB(
+                                              255, 196, 14, 2),
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            width: 35,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(100),
+                                                color: const Color.fromARGB(
+                                                    255, 250, 189, 189)),
+                                            child: Icon(
+                                              Icons.message,
+                                              color: Colors.red,
+                                              size: 20,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 15,
+                                          ),
+                                          Container(
+                                            width: 35,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(100),
+                                                color: const Color.fromARGB(
+                                                    255, 250, 189, 189)),
+                                            child: Icon(
+                                              Icons.call,
+                                              color: Colors.red,
+                                              size: 20,
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ],
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      width: 35,
-                                      height: 35,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(100),
-                                          color: const Color.fromARGB(
-                                              255, 250, 189, 189)),
-                                      child: Icon(
-                                        Icons.message,
-                                        color: Colors.red,
-                                        size: 20,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 15,
-                                    ),
-                                    Container(
-                                      width: 35,
-                                      height: 35,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(100),
-                                          color: const Color.fromARGB(
-                                              255, 250, 189, 189)),
-                                      child: Icon(
-                                        Icons.call,
-                                        color: Colors.red,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  ],
                                 )
                               ],
                             ),
                           )
-                        ],
-                      ),
-                    );
+                        : Text("");
                   },
                 ),
               ),

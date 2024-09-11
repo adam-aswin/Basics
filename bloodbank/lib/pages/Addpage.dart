@@ -43,6 +43,7 @@ class _AddpageState extends State<Addpage> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
+        Navigator.pop(context);
       } else {
         print("null");
       }
