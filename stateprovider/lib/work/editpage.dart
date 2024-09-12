@@ -12,6 +12,7 @@ class Editpage extends StatefulWidget {
 class _EditpageState extends State<Editpage> {
   TextEditingController _controller = TextEditingController();
   int? index;
+
   @override
   Widget build(BuildContext context) {
     index = int.parse(ModalRoute.of(context)!.settings.arguments as String);
@@ -19,6 +20,9 @@ class _EditpageState extends State<Editpage> {
       builder: (context, TaskproviderModal, child) => Scaffold(
           backgroundColor: Colors.black,
           appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: Colors.white,
+            ),
             backgroundColor: Colors.black,
             title: Text(
               "Edit",
@@ -44,6 +48,9 @@ class _EditpageState extends State<Editpage> {
                     color: Colors.grey[800],
                   ),
                   child: TextField(
+                    onTap: () {
+                      _controller.text = TaskproviderModal.task[index!];
+                    },
                     controller: _controller,
                     style: TextStyle(
                       color: Colors.white,
@@ -58,9 +65,9 @@ class _EditpageState extends State<Editpage> {
                             width: 2,
                           ),
                         ),
-                        hintText: "Edit Task",
+                        hintText: TaskproviderModal.task[index!],
                         hintStyle: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                         )),
                   ),
                 ),
@@ -73,15 +80,33 @@ class _EditpageState extends State<Editpage> {
                     backgroundColor: Colors.blueAccent[400],
                   ),
                   onPressed: () {
-                    if (_controller != "") {
+                    if (_controller.text != "") {
                       var data = _controller.text;
                       TaskproviderModal.task[index!] = data;
                       Navigator.pushNamedAndRemoveUntil(
                           context, "/main", (route) => false);
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Empty"),
+                              content: Text("Please fill the feild"),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("Ok"),
+                                ),
+                              ],
+                            );
+                          });
                     }
                   },
                   onLongPress: () {
                     _controller.text = TaskproviderModal.task[index!];
+                    // show();
                   },
                   child: Text(
                     "SAVE",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stateprovider/work/mainPage.dart';
+// import 'package:stateprovider/work/mainPage.dart';
 import 'package:stateprovider/work/provders.dart/taskprovider.dart';
 
 class AddTask extends StatefulWidget {
@@ -75,11 +75,12 @@ class _AddTaskState extends State<AddTask> {
                   backgroundColor: Colors.blueAccent[400],
                 ),
                 onPressed: () {
-                  if (_controller != "") {
+                  if (_controller.text != "") {
                     var data = _controller.text;
                     TaskproviderModal.addTask(data);
                     Navigator.pushNamedAndRemoveUntil(
                         context, "/main", (route) => false);
+                    print(_controller.text);
                   }
                   _controller.clear();
                 },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stateprovider/work/AddTask.dart';
-import 'package:stateprovider/work/editpage.dart';
+// import 'package:stateprovider/work/editpage.dart';
 import 'package:stateprovider/work/provders.dart/taskprovider.dart';
 
 class Mainpage extends StatefulWidget {
@@ -51,7 +51,7 @@ class _MainpageState extends State<Mainpage> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text("Do You Want to Delete?"),
+                          title: Text("Do you want to delete?"),
                           actions: [
                             TextButton(
                               onPressed: () {

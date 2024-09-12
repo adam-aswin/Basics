@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Taskprovider extends ChangeNotifier {
-  List task = [];
+  List<String> task = [];
 
   void addTask(data) {
     task.add(data);
     notifyListeners();
-    // print(task);
+    print(task);
   }
 }
