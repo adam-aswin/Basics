@@ -32,17 +32,25 @@ class _StudentHomeState extends State<StudentHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 241, 251, 252),
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 241, 251, 252),
-        title: Text("Home"),
+        backgroundColor: Colors.black,
+        title: Text(
+          "Home",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {
               Navigator.pushNamed(context, "/add");
             },
-            icon: Icon(Icons.add),
+            icon: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
           ),
         ],
       ),
@@ -50,26 +58,35 @@ class _StudentHomeState extends State<StudentHome> {
         itemCount: datas.length,
         itemBuilder: (context, index) {
           return ListTile(
+            // leading: Icon(Icons.),
             title: _data.get('key') != null
                 ? Text(
                     datas[index]["Name"],
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   )
                 : Text("null"),
-            subtitle: Text('Age : ${datas[index]["Age"]}'),
+            subtitle: Text(
+              'Age : ${datas[index]["Age"]}',
+              style: TextStyle(color: Colors.white70),
+            ),
             trailing: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Marks",
+                  "Total Mark",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
                 Text(
-                    '${datas[index]["marks"]["Phy"]} ${datas[index]["marks"]["Chem"]} ${datas[index]["marks"]["Maths"]}'),
+                  '${int.parse(datas[index]["marks"]["Phy"]) + int.parse(datas[index]["marks"]["Chem"]) + int.parse(datas[index]["marks"]["Maths"])}',
+                  style: TextStyle(color: Colors.white70),
+                ),
               ],
             ),
           );

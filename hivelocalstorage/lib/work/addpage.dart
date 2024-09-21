@@ -19,8 +19,8 @@ class _AddpageState extends State<Addpage> {
   final _data = Hive.box('mydata');
 
   void addData() {
-    details = _data.get('key');
     if (_data.get('key') != null) {
+      details = _data.get('key');
       details.add(
         {
           "Name": name.text,
@@ -57,64 +57,91 @@ class _AddpageState extends State<Addpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 241, 251, 252),
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 241, 251, 252),
-        title: Text("Add Details"),
+        backgroundColor: Colors.black,
+        iconTheme: IconThemeData(color: Colors.white),
+        title: Text(
+          "Add Details",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.deepPurple,
         onPressed: addData,
         child: Text(
           "ADD",
           style: TextStyle(
-            color: const Color.fromARGB(255, 241, 251, 252),
+            color: Colors.black,
           ),
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(15),
+        padding: EdgeInsets.all(20),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Expanded(
-          child: ListView(
+          child: Column(
             children: [
+              // GestureDetector(
+              //   onTap: () {},
+              //   child: Container(
+              //     width: 120,
+              //     height: 120,
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(100),
+              //       color: Colors.grey[900],
+              //     ),
+              //     child: Icon(
+              //       Icons.person,
+              //       size: 90,
+              //       color: Colors.grey,
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 25,
+              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     "Name",
                     style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      // fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
                   ),
                   Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width * .6,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.grey[900],
+                    ),
                     child: TextField(
                       controller: name,
                       decoration: InputDecoration(
-                        labelText: "Name",
-                        labelStyle: TextStyle(
-                          color: Colors.blue,
+                        hintText: "Name",
+                        hintStyle: TextStyle(
+                          color: Colors.white,
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                           borderSide: BorderSide(
                             width: 2,
-                            color: Colors.blue,
+                            color: Colors.deepPurple,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Colors.blue,
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                            )),
                       ),
                     ),
                   )
@@ -129,35 +156,38 @@ class _AddpageState extends State<Addpage> {
                   Text(
                     "Age",
                     style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      // fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
                   ),
                   Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width * .6,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.grey[900],
+                    ),
                     child: TextField(
-                      controller: age,
+                      keyboardType: TextInputType.number,
+                      controller: name,
                       decoration: InputDecoration(
-                        labelText: "Age",
-                        labelStyle: TextStyle(
-                          color: Colors.blue,
+                        hintText: "Age",
+                        hintStyle: TextStyle(
+                          color: Colors.white,
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                           borderSide: BorderSide(
                             width: 2,
-                            color: Colors.blue,
+                            color: Colors.deepPurple,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Colors.blue,
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                            )),
                       ),
                     ),
                   )
@@ -170,7 +200,7 @@ class _AddpageState extends State<Addpage> {
                 child: Text(
                   "Marks",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
@@ -185,35 +215,38 @@ class _AddpageState extends State<Addpage> {
                   Text(
                     "Physics",
                     style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      // fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
                   ),
                   Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width * .6,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.grey[900],
+                    ),
                     child: TextField(
-                      controller: phy,
+                      keyboardType: TextInputType.number,
+                      controller: name,
                       decoration: InputDecoration(
-                        labelText: "Mark",
-                        labelStyle: TextStyle(
-                          color: Colors.blue,
+                        hintText: "Mark",
+                        hintStyle: TextStyle(
+                          color: Colors.white,
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                           borderSide: BorderSide(
                             width: 2,
-                            color: Colors.blue,
+                            color: Colors.deepPurple,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Colors.blue,
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                            )),
                       ),
                     ),
                   )
@@ -228,35 +261,38 @@ class _AddpageState extends State<Addpage> {
                   Text(
                     "Chemistry",
                     style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      // fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
                   ),
                   Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width * .6,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.grey[900],
+                    ),
                     child: TextField(
-                      controller: chem,
+                      keyboardType: TextInputType.number,
+                      controller: name,
                       decoration: InputDecoration(
-                        labelText: "Mark",
-                        labelStyle: TextStyle(
-                          color: Colors.blue,
+                        hintText: "Mark",
+                        hintStyle: TextStyle(
+                          color: Colors.white,
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                           borderSide: BorderSide(
                             width: 2,
-                            color: Colors.blue,
+                            color: Colors.deepPurple,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Colors.blue,
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                            )),
                       ),
                     ),
                   )
@@ -271,35 +307,38 @@ class _AddpageState extends State<Addpage> {
                   Text(
                     "Maths",
                     style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      // fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
                   ),
                   Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width * .6,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.grey[900],
+                    ),
                     child: TextField(
-                      controller: maths,
+                      keyboardType: TextInputType.number,
+                      controller: name,
                       decoration: InputDecoration(
-                        labelText: "Mark",
-                        labelStyle: TextStyle(
-                          color: Colors.blue,
+                        hintText: "Mark",
+                        hintStyle: TextStyle(
+                          color: Colors.white,
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                           borderSide: BorderSide(
                             width: 2,
-                            color: Colors.blue,
+                            color: Colors.deepPurple,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Colors.blue,
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                            )),
                       ),
                     ),
                   )
