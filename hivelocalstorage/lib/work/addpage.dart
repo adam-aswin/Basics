@@ -18,8 +18,12 @@ class _AddpageState extends State<Addpage> {
   List details = [];
   final _data = Hive.box('mydata');
 
-  void addData() {
-    if (_data.get('key') != null) {
+
+  void data(){
+    if(name.text==""||age.text==""||phy.text==""||chem.text==""||maths.text==""){
+      print("null");
+    }else{
+      if (_data.get('key') != null) {
       details = _data.get('key');
       details.add(
         {
@@ -47,11 +51,18 @@ class _AddpageState extends State<Addpage> {
       ];
       _data.put('key', details);
     }
-
-    print(
+     print(
       _data.get('key'),
     );
-    Navigator.pushNamedAndRemoveUntil(context, "/main", (route) => false);
+    
+      Navigator.pushNamedAndRemoveUntil(context, "/main", (route) => false);
+    }
+  }
+
+  void addData() {
+    
+
+   
   }
 
   @override
@@ -71,7 +82,7 @@ class _AddpageState extends State<Addpage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepPurple,
-        onPressed: addData,
+        onPressed: data,
         child: Text(
           "ADD",
           style: TextStyle(
@@ -125,7 +136,9 @@ class _AddpageState extends State<Addpage> {
                     ),
                     child: TextField(
                       controller: name,
+                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
+                        
                         hintText: "Name",
                         hintStyle: TextStyle(
                           color: Colors.white,
@@ -170,7 +183,8 @@ class _AddpageState extends State<Addpage> {
                     ),
                     child: TextField(
                       keyboardType: TextInputType.number,
-                      controller: name,
+                      style: TextStyle(color: Colors.white),
+                      controller: age,
                       decoration: InputDecoration(
                         hintText: "Age",
                         hintStyle: TextStyle(
@@ -229,7 +243,8 @@ class _AddpageState extends State<Addpage> {
                     ),
                     child: TextField(
                       keyboardType: TextInputType.number,
-                      controller: name,
+                      controller: phy,
+                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         hintText: "Mark",
                         hintStyle: TextStyle(
@@ -275,7 +290,8 @@ class _AddpageState extends State<Addpage> {
                     ),
                     child: TextField(
                       keyboardType: TextInputType.number,
-                      controller: name,
+                      controller: chem,
+                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         hintText: "Mark",
                         hintStyle: TextStyle(
@@ -321,7 +337,8 @@ class _AddpageState extends State<Addpage> {
                     ),
                     child: TextField(
                       keyboardType: TextInputType.number,
-                      controller: name,
+                      controller: maths,
+                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         hintText: "Mark",
                         hintStyle: TextStyle(

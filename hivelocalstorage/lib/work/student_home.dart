@@ -42,18 +42,17 @@ class _StudentHomeState extends State<StudentHome> {
           ),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, "/add");
-            },
-            icon: Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
-          ),
-        ],
+        
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
+        shape: CircleBorder(),
+        onPressed: (){
+          Navigator.pushNamed(context, "/add");
+        },child: Icon(
+              Icons.add,
+              color: Colors.black,
+            ),),
       body: ListView.builder(
         itemCount: datas.length,
         itemBuilder: (context, index) {
