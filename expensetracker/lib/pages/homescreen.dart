@@ -27,17 +27,18 @@ class _HomescreenState extends State<Homescreen> {
 
         // buttonBackgroundColor: const Color.fromARGB(255, 0, 148, 62),
         items: [
-          Icon(
-            Icons.home,
-            color: index == 0
-                ? const Color.fromARGB(255, 0, 148, 62)
-                : Colors.black,
+          Container(
+            height: 20,
+            width: 20,
+            child: Image.asset(
+              "./lib/icons/multiply-sign.png",
+              fit: BoxFit.cover,
+              color: index == 0 ? null : Colors.black,
+            ),
           ),
           Icon(
             Icons.bar_chart_rounded,
-            color: index == 1
-                ? const Color.fromARGB(255, 0, 148, 62)
-                : Colors.black,
+            color: index == 1 ? Colors.green : Colors.black,
           ),
         ],
         backgroundColor: Colors.transparent,
